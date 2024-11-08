@@ -1,0 +1,1 @@
+document.querySelector('#app').innerHTML = '<div class="bg-red-500"> this is from js</div>'
