@@ -58,9 +58,3 @@ export function El({
     elem.setAttribute("class", className);
     return elem;
     }
-    
-    
-    const header = El({
-    element: "header",
-    className: "flex items-center justify-center bg-red-300"
-    })
