@@ -16,7 +16,7 @@ export function obsPage1(){
                 children: [
                     El({
                         element: 'h1',
-                        className: 'description-text w-[380px] text-center font-semibold text-[32px] mx-auto mt-[32px] h-119px',
+                        className: 'description-text w-[380px] text-center font-semibold text-[32px] mx-auto mt-[32px] h-100px leading-[38px]',
                         children: 'We provide high quality products just for you'
                     }),
                     El({

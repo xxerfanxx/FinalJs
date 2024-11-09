@@ -1,6 +1,6 @@
 import {El} from "./el.js";
 
-export function obsPage2(){
+export function obsPage3(){
 
     return El({
         element: 'div',
@@ -8,7 +8,7 @@ export function obsPage2(){
         children: [
             El({
                 element: 'div',
-                className: 'top-img w-[428px] h-[602px] bg-[url(/src/assets/obsp2-img.png)] bg-no-repeat'
+                className: 'top-img w-[428px] h-[602px] bg-[url(/src/assets/obsp3-img.png)] bg-no-repeat'
             }),
             El({
                 element: 'div',
@@ -17,11 +17,11 @@ export function obsPage2(){
                     El({
                         element: 'h1',
                         className: 'description-text w-[380px] text-center font-semibold text-[32px] mx-auto mt-[32px] h-100px leading-[38px]',
-                        children: 'Your satisfaction is our number one periority'
+                        children: 'Let’s fulfill your fashion needs with shoearight now!'
                     }),
                     El({
                         element: 'div',
-                        className: 'w-[102px] h-[23px] flex flex-row mx-auto justify-between mt-[59px]',
+                        className: 'w-[102px] h-[23px] flex flex-row mx-auto justify-between mt-[31px]',
                         children: [
                             El({
                                 element: 'img',
@@ -31,12 +31,12 @@ export function obsPage2(){
                             El({
                                 element: 'img',
                                 className: 'first-line',
-                                src: '/src/assets/active-line.svg'
+                                src: '/src/assets/deactive-line.svg'
                             }),
                             El({
                                 element: 'img',
                                 className: 'first-line',
-                                src: '/src/assets/deactive-line.svg'
+                                src: '/src/assets/active-line.svg'
                             })
                         ]
                     }),
