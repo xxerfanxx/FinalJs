@@ -109,8 +109,29 @@ export function loginPage(){
                                                 src: '/src/assets/eye-slash.svg'
                                             })
                                         ]
-                                    })
+                                    }),
+                                    El({
+                                        element: 'div',
+                                        className: 'checkbox-container w-fit h-fit mx-auto mt-[40px]',
+                                        children: [
+                                            El({
+                                                element: 'input',
+                                                type: 'checkbox',
+                                                className: 'checkbox w-[16px] h-[16px] accent-black'
+                                            }),
+                                            El({
+                                                element: 'label',
+                                                className: 'font-normal text-[16px] ml-[8px] text-center',
+                                                children: 'Remember me'
+                                            })
+                                        ]
+                                    }),
                                 ]
+                            }),
+                            El({
+                                element: 'button',
+                                className: 'sign-in-button w-[380px] h-[47px] bg-slate-800 rounded-3xl text-white font-medium text-[14px] mt-[283px]',
+                                children: 'Sign in'
                             })
                         ]
                     })
@@ -119,12 +140,6 @@ export function loginPage(){
         ]
     })
 }
-
-// let emailInput = document.getElementById('email');
-// let passwordInput = document.getElementById('password');
-
-// let emailImg = document.querySelector('.email-img');
-// let passwordImg = document.querySelector('.password-img');
 
 function highlight(element){
 
@@ -160,7 +175,7 @@ function clearHighlight(element){
 
     if(element.value.length > 0){
         element.parentElement.children[0].src = `/src/assets/${highImg}`;
-        
+
         if(element.parentElement.children[2]){
             element.parentElement.children[2].src = `/src/assets/${highEye}`;
         }
