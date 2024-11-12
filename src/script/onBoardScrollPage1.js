@@ -1,4 +1,5 @@
 import {El} from "./el.js";
+import { obsPage2 } from "./onBoardScrollPage2.js";
 
 export function obsPage1(){
 
@@ -43,6 +44,12 @@ export function obsPage1(){
                     El({
                         element: 'button',
                         className: 'w-[380px] h-[45px] bg-slate-800 rounded-3xl mx-auto text-center mt-[40px]',
+                        eventListener: [
+                            {
+                                event: 'click',
+                                callback: goToNextPage
+                            }
+                        ],
                         children: [
                             El({
                                 element: 'p',
@@ -55,4 +62,13 @@ export function obsPage1(){
             })
         ]
     })
+}
+
+function render(page){
+    app.innerHTML = '';
+    app.append(page);
+}
+
+function goToNextPage(){
+    render(obsPage2())
 }

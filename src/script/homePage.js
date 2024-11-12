@@ -91,11 +91,11 @@ export function homePage(){
             }),
             El({
                 element: 'div',
-                className: 'brands w-[380px] h-[234px] mx-auto flex flex-wrap mt-[10px] py-[12px] px-[8px]',
+                className: 'brands w-[380px] h-[234px] mx-auto flex flex-wrap mt-[10px] py-[12px]',
                 children: [
                     El({
                         element: 'div',
-                        className: 'brand-container flex flex-col w-fit h-fit mr-[41px]',
+                        className: 'brand-container flex flex-col w-fit h-fit mr-[41px] ml-[6px]',
                         children: [
                             El({
                                 element: 'div',
@@ -183,7 +183,7 @@ export function homePage(){
                     }),
                     El({
                         element: 'div',
-                        className: 'brand-container flex flex-col w-fit h-fit mr-[41px] mt-[28px]',
+                        className: 'brand-container flex flex-col w-fit h-fit mr-[41px] mt-[28px] ml-[6px]',
                         children: [
                             El({
                                 element: 'div',
@@ -270,8 +270,119 @@ export function homePage(){
                         ]
                     })
                 ]
+            }),
+            El({
+                element: 'div',
+                className: 'middle-content mx-[24px] flex flex-row justify-between mt-[16px]',
+                children: [
+                    El({
+                        element: 'h1',
+                        className: 'font-semibold text-[20px]',
+                        children: 'Most Popular'
+                    }),
+                    El({
+                        element: 'button',
+                        className: 'see-all-button bg-transparent w-fit h-fit font-semibold text-[16px]',
+                        children: 'See All'
+                    })
+                ]
+            }),
+            El({
+                element: 'ul',
+                className: 'categories flex flex-row overflow-auto w-[400px] ml-4 mt-[20px]',
+                children: [
+                    El({
+                        element: 'li',
+                        className: 'all border-2 border-black px-2 rounded-3xl mx-2',
+                        children: 'All',
+                        eventListener: [
+                            {
+                                event: 'click',
+                                callback: (event)=>{toggleColor(event.target)}
+                            }
+                        ]
+                    }),
+                    El({
+                        element: 'li',
+                        className: 'nike border-2 border-black px-2 rounded-3xl mx-2',
+                        children: 'Nike',
+                        eventListener: [
+                            {
+                                event: 'click',
+                                callback: (event)=>{toggleColor(event.target)}
+                            }
+                        ]
+                    }),
+                    El({
+                        element: 'li',
+                        className: 'adidas border-2 border-black px-2 rounded-3xl mx-2',
+                        children: 'Adidas',
+                        eventListener: [
+                            {
+                                event: 'click',
+                                callback: (event)=>{toggleColor(event.target)}
+                            }
+                        ]
+                    }),
+                    El({
+                        element: 'li',
+                        className: 'puma border-2 border-black px-2 rounded-3xl mx-2',
+                        children: 'Asics',
+                        eventListener: [
+                            {
+                                event: 'click',
+                                callback: (event)=>{toggleColor(event.target)}
+                            }
+                        ]
+                    }),
+                    El({
+                        element: 'li',
+                        className: 'puma border-2 border-black px-2 rounded-3xl mx-2',
+                        children: 'Puma',
+                        eventListener: [
+                            {
+                                event: 'click',
+                                callback: (event)=>{toggleColor(event.target)}
+                            }
+                        ]
+                    }),
+                    El({
+                        element: 'li',
+                        className: 'puma border-2 border-black px-2 rounded-3xl mx-2',
+                        children: 'Puma',
+                        eventListener: [
+                            {
+                                event: 'click',
+                                callback: (event)=>{toggleColor(event.target)}
+                            }
+                        ]
+                    }),
+                    El({
+                        element: 'li',
+                        className: 'puma border-2 border-black px-2 rounded-3xl mx-2',
+                        children: 'Puma',
+                        eventListener: [
+                            {
+                                event: 'click',
+                                callback: (event)=>{toggleColor(event.target)}
+                            }
+                        ]
+                    })
+                ]
             })
         ]
-    })
-        
+    })   
+}
+
+function toggleColor(element){
+    if(element.classList.contains('active')){
+        element.classList.remove('active')
+        element.classList.remove('bg-black')
+        element.classList.remove('text-white')
+    }
+    else{
+        element.classList.add('active')
+        element.classList.add('bg-black')
+        element.classList.add('text-white')
+    }
 }

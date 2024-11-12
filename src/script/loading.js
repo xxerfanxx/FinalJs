@@ -1,11 +1,20 @@
 import {El} from "./el.js";
 import logo from '../assets/logo.svg';
+import { obsPage1 } from "./onBoardScrollPage1.js";
+
+let myvar;
 
 export function startUpPage(){
 
     return El({
         element: 'div',
         className: 'header w-full h-full flex flex-col',
+        eventListener: [
+            {
+                event: 'load',
+                callback: ()=>{showPage()}
+            }
+        ],
         children: [
             El({
                 element: 'div',
@@ -13,7 +22,7 @@ export function startUpPage(){
                 children: [
                     El({
                         element: 'div',
-                        className: 'logo-background bg-black rounded-full w-[59px] h-[59px] pt-2',
+                        className: 'logo-background bg-black rounded-full w-[59px] h-[59px] pt-2 animate-bounce',
                         children: [
                             El({
                                 element: 'img',
@@ -31,7 +40,7 @@ export function startUpPage(){
             }),
             El({
                 element: 'div',
-                className: 'loading-container w-[48px] h-[48px] mt-[306px] mx-[190px]',
+                className: 'loading-container w-[48px] h-[48px] mt-[306px] mx-[190px] animate-spin',
                 children: [
                     El({
                         element: 'img',
@@ -43,3 +52,16 @@ export function startUpPage(){
         ]
     })
 };
+
+window.onload = ()=>{
+    showPage()
+}
+    
+function render(page){
+    app.innerHTML = '';
+    app.append(page);
+}
+
+function showPage(){
+    myvar = setTimeout(()=>{render(obsPage1())}, 3000);
+}

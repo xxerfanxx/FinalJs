@@ -1,9 +1,9 @@
-import {startUpPage} from './loading.js';
-import {welcomePage} from './welcome.js';
-import {obsPage1} from './onBoardScrollPage1.js';
-import {obsPage2} from './onBoardScrollPage2.js';
-import {obsPage3} from './onBoardScrollPage3.js';
-import {loginPage} from './login.js';
+// import {startUpPage} from './loading.js';
+// import {welcomePage} from './welcome.js';
+// import {obsPage1} from './onBoardScrollPage1.js';
+// import {obsPage2} from './onBoardScrollPage2.js';
+// import {obsPage3} from './onBoardScrollPage3.js';
+// import {loginPage} from './login.js';
 import {homePage} from './homePage.js';
 
 const app = document.getElementById('app');
@@ -19,4 +19,4 @@ function render(page){
 // render(obsPage2());
 // render(obsPage3());
 // render(loginPage());
-render(homePage());
+render(homePage())

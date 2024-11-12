@@ -1,4 +1,5 @@
 import {El} from "./el.js";
+import { loginPage } from "./login.js";
 
 export function obsPage3(){
 
@@ -43,11 +44,17 @@ export function obsPage3(){
                     El({
                         element: 'button',
                         className: 'w-[380px] h-[45px] bg-slate-800 rounded-3xl mx-auto text-center mt-[40px]',
+                        eventListener: [
+                            {
+                                event: 'click',
+                                callback: goToNextPage
+                            }
+                        ],
                         children: [
                             El({
                                 element: 'p',
                                 className: 'text-white text-[14px] font-medium',
-                                children: 'Next'
+                                children: 'Get Started'
                             })
                         ]
                     })
@@ -55,4 +62,13 @@ export function obsPage3(){
             })
         ]
     })
+}
+
+function render(page){
+    app.innerHTML = '';
+    app.append(page);
+}
+
+function goToNextPage(){
+    render(loginPage());
 }

@@ -1,4 +1,5 @@
 import {El} from "./el.js";
+import { homePage } from "./homePage.js";
 
 export function loginPage(){
     return El({
@@ -131,6 +132,12 @@ export function loginPage(){
                             El({
                                 element: 'button',
                                 className: 'sign-in-button w-[380px] h-[47px] bg-slate-800 rounded-3xl text-white font-medium text-[14px] mt-[283px]',
+                                eventListener: [
+                                    {
+                                        event: 'click',
+                                        callback: goToNextPage
+                                    }
+                                ],
                                 children: 'Sign in'
                             })
                         ]
@@ -142,6 +149,7 @@ export function loginPage(){
 }
 
 function highlight(element){
+    console.log('hi')
 
     element.parentElement.classList.add('outline');
 
@@ -190,4 +198,13 @@ function clearHighlight(element){
 
 
     element.parentElement.classList.remove('outline');
+}
+
+function render(page){
+    app.innerHTML = '';
+    app.append(page);
+}
+
+function goToNextPage(){
+    render(homePage())
 }

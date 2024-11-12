@@ -1,31 +1,3 @@
-// export default function createElement(parentName = '', elementName, className="", idName="", inputInnerHTML="", inputInnerText=""){
-
-//     let parentElement = parentName?document.querySelector(`${parentName}`):document.getElementsByTagName('BODY')[0];
-
-//     parentElement.innerHTML += `<${elementName}></${elementName}>`
-
-//     let newElement = parentElement.getElementsByTagName(elementName).item(parentElement.getElementsByTagName(elementName).length - 1);
-
-//     if(className){
-//         newElement.setAttribute("class", className);
-//     }
-
-//     if(idName){
-//         newElement.setAttribute("id", idName);
-//     }
-
-//     if(inputInnerHTML){
-//         newElement.innerHTML = inputInnerHTML;
-//     }
-
-//     if(inputInnerText){
-//         newElement.innerText = inputInnerText;
-//     }
-
-//     // parentElement.appendChild(newElement);
-
-// }
-
 export function El({
     element,
     children,
