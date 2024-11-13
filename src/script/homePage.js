@@ -1,6 +1,85 @@
 import { data } from "autoprefixer";
 import {El} from "./el.js";
 
+
+let database;
+
+async function getData() {
+    const url = "http://localhost:5000/Products";
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`Response status: ${response.status}`);
+      }
+  
+      const data = await response.json();
+      database = data;
+
+      syncProducts()
+
+    } catch (error) {
+      console.error(error.message);
+    }
+}
+
+getData();
+
+let productContainer;
+
+function syncProducts(){
+
+    let productList = [];
+    let pname;
+    let price;
+    let img;
+
+    productContainer = El({
+        element: 'ul',
+        className: 'product-container w-[400px] h-[800px] overflow-y-auto mx-auto flex flex-wrap',
+        chilren: productList
+    })
+
+try{
+    for(let i = 0; i < database.length; i++){
+        pname = 'nike'
+        price = 80000
+        img = 'nothing'
+
+        productContainer.append(El({
+            element: 'li',
+            className: 'product-template w-[182] h-[244px] flex flex-col ml-[24px] mt-[24px]',
+            children: [
+                El({
+                    element: 'div',
+                    className: 'product-img-container w-[182px] h-[182px] bg-gray-100 rounded-3xl',
+                    children: [
+                        El({
+                            element: 'img',
+                            className: 'product-img m-auto',
+                            src: img
+                        })
+                    ]
+                }),
+                El({
+                    element: 'h1',
+                    className: 'product-name w-[182px] overflow-collapse font-bold text-[20px] mt-[5px]',
+                    children: pname
+                }),
+                El({
+                    element: 'h1',
+                    className: 'product-price font-semibold text-[16px]',
+                    children: price
+                })
+            ]
+        }))
+    }
+    console.log(productContainer)
+}
+catch(error){
+    console.log(error)
+}
+}
+
 export function homePage(){
 
     return El({
@@ -371,10 +450,7 @@ export function homePage(){
                     })
                 ]
             }),
-            El({
-                element: 'div',
-                className: ''
-            })
+            productContainer
         ]
     })   
 }
@@ -390,29 +466,4 @@ function toggleColor(element){
         element.classList.add('bg-black')
         element.classList.add('text-white')
     }
-}
-
-let database;
-
-async function getData() {
-    const url = "http://localhost:5000/Products";
-    try {
-      const response = await fetch(url);
-      if (!response.ok) {
-        throw new Error(`Response status: ${response.status}`);
-      }
-  
-      const data = await response.json();
-      database = data;
-    } catch (error) {
-      console.error(error.message);
-    }
-}
-
-getData();
-
-function syncProducts(){
-
-    let productList;
-
 }
