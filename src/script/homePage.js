@@ -1,3 +1,4 @@
+import { data } from "autoprefixer";
 import {El} from "./el.js";
 
 export function homePage(){
@@ -91,7 +92,7 @@ export function homePage(){
             }),
             El({
                 element: 'div',
-                className: 'brands w-[380px] h-[234px] mx-auto flex flex-wrap mt-[10px] py-[12px]',
+                className: 'brands w-[380px] h-[234px] mx-[24px] flex flex-wrap mt-[10px] py-[12px]',
                 children: [
                     El({
                         element: 'div',
@@ -369,6 +370,10 @@ export function homePage(){
                         ]
                     })
                 ]
+            }),
+            El({
+                element: 'div',
+                className: ''
             })
         ]
     })   
@@ -385,4 +390,29 @@ function toggleColor(element){
         element.classList.add('bg-black')
         element.classList.add('text-white')
     }
+}
+
+let database;
+
+async function getData() {
+    const url = "http://localhost:5000/Products";
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`Response status: ${response.status}`);
+      }
+  
+      const data = await response.json();
+      database = data;
+    } catch (error) {
+      console.error(error.message);
+    }
+}
+
+getData();
+
+function syncProducts(){
+
+    let productList;
+
 }
