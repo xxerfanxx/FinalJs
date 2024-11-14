@@ -69,7 +69,7 @@ try{
             children: [
                 El({
                     element: 'div',
-                    className: 'product-img-container w-[182px] h-fit bg-gray-100 rounded-2xl',
+                    className: 'product-img-container w-[182px] h-[182px] overflow-hidden bg-gray-100 rounded-2xl',
                     children: [
                         El({
                             element: 'img',
@@ -91,16 +91,64 @@ try{
             ]
         }))
     }
-    updateProductList()
+    render(homePage())
 }
 catch(error){
     console.log(error)
 }
+}
 
-return;
+let categories = [
+    {
+        name: 'All',
+        isActive: 'active bg-black text-white'
+    },
+    {
+        name: 'Nike',
+        isActive: ''
+    },
+    {
+        name: 'Adidas',
+        isActive: ''
+    },
+    {
+        name: 'Asics',
+        isActive: ''
+    },
+    {
+        name: 'Puma',
+        isActive: ''
+    },
+    {
+        name: 'Reebok',
+        isActive: ''
+    }
+]
+
+function setCategories(){
+    let categoryList = []
+    for(let i=0; i<categories.length; i++){
+
+    
+        categoryList.push(El({
+            element: 'li',
+            className: `all border-2 border-black px-2 rounded-3xl mx-2 ${categories[i]['isActive']}`,
+            children: [categories[i]['name']],
+            eventListener: [
+                {
+                    event: 'click',
+                    callback: (event)=>{toggleColor(event.target)}
+                }
+            ]
+        }))
+    }
+    return categoryList;
 }
 
 function setFilter(filters = []){
+
+    let back_up_database = structuredClone(database);
+
     if(filters.length > 0 && !filters.includes('All')){
         let tmp_database = [];
         for(let i = 0; i < filters.length; i++){
@@ -115,7 +163,8 @@ function setFilter(filters = []){
         }
         database = tmp_database;
         syncProducts();
-        render(page);
+        render(homePage());
+        database = structuredClone(back_up_database)
     }
     else{
         getData();
@@ -418,85 +467,7 @@ export function homePage(){
             El({
                 element: 'ul',
                 className: 'categories flex flex-row overflow-auto w-[400px] ml-4 mt-[20px]',
-                children: [
-                    El({
-                        element: 'li',
-                        className: 'all border-2 border-black px-2 rounded-3xl mx-2',
-                        children: 'All',
-                        eventListener: [
-                            {
-                                event: 'click',
-                                callback: (event)=>{toggleColor(event.target)}
-                            }
-                        ]
-                    }),
-                    El({
-                        element: 'li',
-                        className: 'nike border-2 border-black px-2 rounded-3xl mx-2',
-                        children: 'Nike',
-                        eventListener: [
-                            {
-                                event: 'click',
-                                callback: (event)=>{toggleColor(event.target)}
-                            }
-                        ]
-                    }),
-                    El({
-                        element: 'li',
-                        className: 'adidas border-2 border-black px-2 rounded-3xl mx-2',
-                        children: 'Adidas',
-                        eventListener: [
-                            {
-                                event: 'click',
-                                callback: (event)=>{toggleColor(event.target)}
-                            }
-                        ]
-                    }),
-                    El({
-                        element: 'li',
-                        className: 'puma border-2 border-black px-2 rounded-3xl mx-2',
-                        children: 'Asics',
-                        eventListener: [
-                            {
-                                event: 'click',
-                                callback: (event)=>{toggleColor(event.target)}
-                            }
-                        ]
-                    }),
-                    El({
-                        element: 'li',
-                        className: 'puma border-2 border-black px-2 rounded-3xl mx-2',
-                        children: 'Puma',
-                        eventListener: [
-                            {
-                                event: 'click',
-                                callback: (event)=>{toggleColor(event.target)}
-                            }
-                        ]
-                    }),
-                    El({
-                        element: 'li',
-                        className: 'puma border-2 border-black px-2 rounded-3xl mx-2',
-                        children: 'Puma',
-                        eventListener: [
-                            {
-                                event: 'click',
-                                callback: (event)=>{toggleColor(event.target)}
-                            }
-                        ]
-                    }),
-                    El({
-                        element: 'li',
-                        className: 'puma border-2 border-black px-2 rounded-3xl mx-2',
-                        children: 'Puma',
-                        eventListener: [
-                            {
-                                event: 'click',
-                                callback: (event)=>{toggleColor(event.target)}
-                            }
-                        ]
-                    })
-                ]
+                children: setCategories()
             }),
             productContainer,
             El({
@@ -592,10 +563,29 @@ export function homePage(){
 let filterArr = [];
 
 function toggleColor(element){
+
+    let count = 0;
+
     if(element.classList.contains('active')){
         element.classList.remove('active')
         element.classList.remove('bg-black')
         element.classList.remove('text-white')
+    
+        for(let i = 0; i<categories.length; i++){
+
+            if(element.innerHTML == categories[i]['name']){
+                categories[i]['isActive'] = '';
+            }
+
+            if(categories[i]['isActive'] == ''){
+                count ++
+            }
+        }
+
+        if(count == categories.length){
+            categories[0]['isActive'] = 'active bg-black text-white'
+            filterArr = []
+        }
 
         for(let i = 0; i < filterArr.length; i++){
             if(filterArr[i] == element.innerHTML){
@@ -608,22 +598,44 @@ function toggleColor(element){
         element.classList.add('active')
         element.classList.add('bg-black')
         element.classList.add('text-white')
+
+        for(let i = 0; i<categories.length; i++){
+
+            if(element.innerHTML == categories[i]['name']){
+                categories[i]['isActive'] = 'active bg-black text-white';
+                if(i != 0){
+                    categories[0]['isActive'] = '';
+                }
+
+                break;
+            }
+        }
+
         for(let i = 0; i < filterArr.length; i++){
             if(filterArr[i] == element.innerHTML){
                 return;
             }
         }
+
+        if(element.innerHTML == 'All'){
+            categories.map((obj)=>{obj['isActive'] = ''});
+            categories[0]['isActive'] = 'active bg-black text-white';
+            filterArr= []
+        }
         filterArr.push(element.innerHTML)
     }
 
-    setTimeout(() => {
-        setFilter(filterArr);
-    }, 1000);
-}
+    for(let i = 0; i < categories.length; i++){
+        if(categories[i]['isActive'] != ''){
+            count ++;
+        }
+    }
 
-// function updateProductList(){
-//     let child = document.querySelector('.product-container');
-//     let parent = child.parentNode
-//     parent.replaceChild(child, productContainer)
-    
-// }
+    if(count == categories.length - 1){
+        categories.map((obj)=>{obj['isActive'] = ''});
+        categories[0]['isActive'] = 'active bg-black text-white';
+        filterArr = [];
+    }
+
+    setFilter(filterArr);
+}
