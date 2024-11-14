@@ -2,6 +2,10 @@ import { data } from "autoprefixer";
 import {El} from "./el.js";
 
 
+function setFilter(){
+    
+}
+
 let database;
 
 async function getData() {
@@ -43,6 +47,7 @@ function syncProducts(){
     let pname;
     let price;
     let img;
+    let id;
 
     productContainer = El({
         element: 'ul',
@@ -55,18 +60,25 @@ try{
         pname = database[i]['title'];
         price = `$ ${database[i]['price']}`;
         img = database[i]['images'];
+        id = database[i]['id'];
 
         productContainer.append(El({
             element: 'li',
-            className: 'product-template w-[182] h-[244px] flex flex-col ml-[12px]',
+            className: 'product-template w-[182] h-[244px] flex flex-col ml-[12px] mb-[24px]',
+            eventListener: [
+                    {
+                        event: 'click',
+                        callback: ()=>{redirectToProduct(id)}
+                }
+            ],
             children: [
                 El({
                     element: 'div',
-                    className: 'product-img-container w-[182px] h-[182px] bg-gray-100 rounded-3xl',
+                    className: 'product-img-container w-[182px] h-fit bg-gray-100 rounded-2xl',
                     children: [
                         El({
                             element: 'img',
-                            className: 'product-img m-auto',
+                            className: 'product-img m-auto rounded-2xl',
                             src: img
                         })
                     ]
@@ -89,6 +101,10 @@ try{
 catch(error){
     console.log(error)
 }
+}
+
+function redirectToProduct(id){
+    console.log(id)
 }
 
 export function homePage(){
@@ -461,7 +477,93 @@ export function homePage(){
                     })
                 ]
             }),
-            productContainer
+            productContainer,
+            El({
+                element: 'div',
+                className: 'footer h-[66px] w-[428px] flex flex-row justify-evenly',
+                children: [
+                    El({
+                        element: 'button',
+                        className: 'home-button w-[29px] h-[38px] flex flex-col mt-[12px]',
+                        children: [
+                            El({
+                                element: 'img',
+                                className: 'home-icon m-auto',
+                                src: '/src/assets/home-icon.svg'
+                            }),
+                            El({
+                                element: 'h1',
+                                className: 'button-text font-semibold text-[10px]',
+                                children: 'Home'
+                            })
+                        ]
+                    }),
+                    El({
+                        element: 'button',
+                        className: 'cart-button w-[29px] h-[38px] flex flex-col mt-[12px]',
+                        children: [
+                            El({
+                                element: 'img',
+                                className: 'home-icon m-auto',
+                                src: '/src/assets/cart-icon.svg'
+                            }),
+                            El({
+                                element: 'h1',
+                                className: 'button-text font-semibold text-[10px]',
+                                children: 'Cart'
+                            })
+                        ]
+                    }),
+                    El({
+                        element: 'button',
+                        className: 'orders-button w-[29px] h-[38px] flex flex-col mt-[12px]',
+                        children: [
+                            El({
+                                element: 'img',
+                                className: 'home-icon m-auto',
+                                src: '/src/assets/order-icon.svg'
+                            }),
+                            El({
+                                element: 'h1',
+                                className: 'button-text font-semibold text-[10px]',
+                                children: 'Orders'
+                            })
+                        ]
+                    }),
+                    El({
+                        element: 'button',
+                        className: 'wallet-button w-[29px] h-[38px] flex flex-col mt-[12px]',
+                        children: [
+                            El({
+                                element: 'img',
+                                className: 'home-icon m-auto',
+                                src: '/src/assets/wallet-icon.svg'
+                            }),
+                            El({
+                                element: 'h1',
+                                className: 'button-text font-semibold text-[10px]',
+                                children: 'Wallet'
+                            })
+                        ]
+                    }),
+                    El({
+                        element: 'button',
+                        className: 'profile-button w-[29px] h-[38px] flex flex-col mt-[12px]',
+                        children: [
+                            El({
+                                element: 'img',
+                                className: 'home-icon m-auto',
+                                src: '/src/assets/person-icon.svg'
+                            }),
+                            El({
+                                element: 'h1',
+                                className: 'button-text font-semibold text-[10px]',
+                                children: 'Profile'
+                            })
+                        ]
+                    })
+                ]
+            })
         ]
     })   
 }
