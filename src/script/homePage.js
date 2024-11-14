@@ -149,7 +149,13 @@ function setFilter(filters = []){
 
     let back_up_database = structuredClone(database);
 
-    if(filters.length > 0 && !filters.includes('All')){
+    if(filters.length == 1 && filters[0] == 'All'){
+            getData();
+    }
+    else if(filters.length == 0){
+        getData();
+    }
+    else{
         let tmp_database = [];
         for(let i = 0; i < filters.length; i++){
             for(let j = 0; j < database.length; j++){
@@ -165,12 +171,8 @@ function setFilter(filters = []){
         syncProducts();
         render(homePage());
         database = structuredClone(back_up_database)
+        console.log('d')
     }
-    else{
-        getData();
-    }
-
-    return;
 }
 
 function redirectToProduct(id){
@@ -257,6 +259,12 @@ export function homePage(){
                     El({
                         element: 'img',
                         className: 'search-icon w-[18px] h-[18px] my-auto mr-[5px] ml-[12px]',
+                        eventListener: [
+                            {
+                                event: 'click',
+                                callback: (event)=>{setInputFilter(event.target)}
+                            }
+                        ],
                         src: '/src/assets/input-icon.svg'
                     }),
                     El({
@@ -564,8 +572,6 @@ let filterArr = [];
 
 function toggleColor(element){
 
-    let count = 0;
-
     if(element.classList.contains('active')){
         element.classList.remove('active')
         element.classList.remove('bg-black')
@@ -576,15 +582,6 @@ function toggleColor(element){
             if(element.innerHTML == categories[i]['name']){
                 categories[i]['isActive'] = '';
             }
-
-            if(categories[i]['isActive'] == ''){
-                count ++
-            }
-        }
-
-        if(count == categories.length){
-            categories[0]['isActive'] = 'active bg-black text-white'
-            filterArr = []
         }
 
         for(let i = 0; i < filterArr.length; i++){
@@ -592,6 +589,12 @@ function toggleColor(element){
                 filterArr.splice(i, 1);
                 break;
             }
+        }
+
+        console.log(filterArr.length)
+        
+        if(filterArr.length == 0 || filterArr.includes('All')){
+            categories[0]['isActive'] = 'active bg-black text-white'
         }
     }
     else{
@@ -606,36 +609,41 @@ function toggleColor(element){
                 if(i != 0){
                     categories[0]['isActive'] = '';
                 }
+                else{
+                    categories.map((obj)=>{obj['isActive'] = ''});
+                    categories[0]['isActive'] = 'active bg-black text-white';
+                    filterArr= []
+                }
 
                 break;
             }
         }
 
-        for(let i = 0; i < filterArr.length; i++){
-            if(filterArr[i] == element.innerHTML){
-                return;
-            }
-        }
+        filterArr.push(element.innerHTML)
 
-        if(element.innerHTML == 'All'){
+        if(filterArr.length == categories.length){
             categories.map((obj)=>{obj['isActive'] = ''});
             categories[0]['isActive'] = 'active bg-black text-white';
-            filterArr= []
-        }
-        filterArr.push(element.innerHTML)
-    }
-
-    for(let i = 0; i < categories.length; i++){
-        if(categories[i]['isActive'] != ''){
-            count ++;
+            filterArr = [];
         }
     }
 
-    if(count == categories.length - 1){
-        categories.map((obj)=>{obj['isActive'] = ''});
-        categories[0]['isActive'] = 'active bg-black text-white';
-        filterArr = [];
-    }
-
+    console.log(filterArr)
     setFilter(filterArr);
+}
+
+function setInputFilter(imgElement){
+    let parent = imgElement.parentElement;
+    let input = parent.children[1]
+    console.log(input.value.length)
+    let text = input.value
+    if(text.length == 0){
+        getData();
+        console.log('hi')
+    }
+    else{
+        
+        setFilter([input.value])
+    }
+        
 }
