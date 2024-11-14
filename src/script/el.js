@@ -12,8 +12,8 @@ export function El({
     elem[attr] = rest[attr];
     }
     if (children) {
-    for (const child of children) {
-    elem.append(child);
+    for (let i = 0; i < children.length; i++) {
+    elem.append(children[i]);
     }
     }
     if (eventListener) {

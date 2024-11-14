@@ -5,7 +5,7 @@ import {El} from "./el.js";
 let database;
 
 async function getData() {
-    const url = "http://localhost:5000/Products";
+    const url = "http://localhost:5173/Products";
     try {
       const response = await fetch(url);
       if (!response.ok) {
@@ -16,15 +16,26 @@ async function getData() {
       database = data;
 
       syncProducts()
+      render(homePage())
 
     } catch (error) {
       console.error(error.message);
     }
 }
 
+
+function render(page){
+    app.innerHTML = '';
+    app.append(page);
+}
+
 getData();
 
-let productContainer;
+let productContainer = El({
+    element: 'img',
+    className: 'loading-img w-[48px] h-[48px] mx-auto my-[80px] animate-spin',
+    src: '/src/assets/spinner-atom.svg'
+});
 
 function syncProducts(){
 
@@ -35,19 +46,19 @@ function syncProducts(){
 
     productContainer = El({
         element: 'ul',
-        className: 'product-container w-[400px] h-[800px] overflow-y-auto mx-auto flex flex-wrap',
+        className: 'product-container w-[400px] h-[600px] mt-[24px] overflow-y-auto mx-auto flex flex-wrap',
         chilren: productList
     })
 
 try{
     for(let i = 0; i < database.length; i++){
-        pname = 'nike'
-        price = 80000
-        img = 'nothing'
+        pname = database[i]['title'];
+        price = `$ ${database[i]['price']}`;
+        img = database[i]['images'];
 
         productContainer.append(El({
             element: 'li',
-            className: 'product-template w-[182] h-[244px] flex flex-col ml-[24px] mt-[24px]',
+            className: 'product-template w-[182] h-[244px] flex flex-col ml-[12px]',
             children: [
                 El({
                     element: 'div',
@@ -63,12 +74,12 @@ try{
                 El({
                     element: 'h1',
                     className: 'product-name w-[182px] overflow-collapse font-bold text-[20px] mt-[5px]',
-                    children: pname
+                    children: [pname]
                 }),
                 El({
                     element: 'h1',
                     className: 'product-price font-semibold text-[16px]',
-                    children: price
+                    children: [price]
                 })
             ]
         }))
