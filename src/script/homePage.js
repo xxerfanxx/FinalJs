@@ -1,11 +1,6 @@
 import { data } from "autoprefixer";
 import {El} from "./el.js";
 
-
-function setFilter(){
-    
-}
-
 let database;
 
 async function getData() {
@@ -96,11 +91,37 @@ try{
             ]
         }))
     }
-    console.log(productContainer)
+    updateProductList()
 }
 catch(error){
     console.log(error)
 }
+
+return;
+}
+
+function setFilter(filters = []){
+    if(filters.length > 0 && !filters.includes('All')){
+        let tmp_database = [];
+        for(let i = 0; i < filters.length; i++){
+            for(let j = 0; j < database.length; j++){
+                for(const key in database[j]){
+                    if(database[j][key] == filters[i].toLowerCase()){
+                        tmp_database.push(database[j])
+                        break;
+                    }
+                }
+            }
+        }
+        database = tmp_database;
+        syncProducts();
+        render(page);
+    }
+    else{
+        getData();
+    }
+
+    return;
 }
 
 function redirectToProduct(id){
@@ -568,15 +589,41 @@ export function homePage(){
     })   
 }
 
+let filterArr = [];
+
 function toggleColor(element){
     if(element.classList.contains('active')){
         element.classList.remove('active')
         element.classList.remove('bg-black')
         element.classList.remove('text-white')
+
+        for(let i = 0; i < filterArr.length; i++){
+            if(filterArr[i] == element.innerHTML){
+                filterArr.splice(i, 1);
+                break;
+            }
+        }
     }
     else{
         element.classList.add('active')
         element.classList.add('bg-black')
         element.classList.add('text-white')
+        for(let i = 0; i < filterArr.length; i++){
+            if(filterArr[i] == element.innerHTML){
+                return;
+            }
+        }
+        filterArr.push(element.innerHTML)
     }
+
+    setTimeout(() => {
+        setFilter(filterArr);
+    }, 1000);
 }
+
+// function updateProductList(){
+//     let child = document.querySelector('.product-container');
+//     let parent = child.parentNode
+//     parent.replaceChild(child, productContainer)
+    
+// }
