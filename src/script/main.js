@@ -7,7 +7,6 @@ function render(page){
     app.append(page);
 }
 
-
 export var router = new Navigo('/');
 
 router
@@ -39,11 +38,12 @@ router
     const {homePage} = await import('./homePage.js');
     render(homePage())
   })
-  .resolve();
-
-  router
   .on('/product/:id', async (params) =>{
     const { productPage } = await import ('./productPage.js')
     render(productPage(params.data.id));
+  })
+  .on(`/cart`, async function () {
+    const {cartPage} = await import('./cartPage.js');
+    render(cartPage())
   })
   .resolve();

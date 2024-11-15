@@ -498,6 +498,12 @@ export function homePage(){
                     El({
                         element: 'button',
                         className: 'cart-button w-[29px] h-[38px] flex flex-col mt-[12px]',
+                        eventListener: [
+                            {
+                                event : 'click',
+                                callback: ()=>{router.navigate('/cart')}
+                            }
+                        ],
                         children: [
                             El({
                                 element: 'img',
