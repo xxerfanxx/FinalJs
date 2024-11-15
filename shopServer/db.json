@@ -15,7 +15,7 @@
       "id": "1",
       "title": "adidas",
       "price": 245,
-      "order": 56,
+      "order": 3,
       "size": [
         42,
         41,
@@ -34,7 +34,7 @@
       "id": "2",
       "title": "adidas",
       "price": 145,
-      "order": 0,
+      "order": 4,
       "size": [
         44,
         42,
