@@ -1,4 +1,5 @@
 import {El} from "./el.js";
+import { router } from "./main.js";
 
 export function welcomePage(){
 
@@ -39,3 +40,7 @@ export function welcomePage(){
         ]
     })
 }
+
+setTimeout(() => {
+    router.navigate('/obsp1')
+}, 10000);

@@ -1,5 +1,5 @@
 import {El} from "./el.js";
-import { loginPage } from "./login.js";
+import { router } from "./main.js";
 
 export function obsPage3(){
 
@@ -43,7 +43,7 @@ export function obsPage3(){
                     }),
                     El({
                         element: 'button',
-                        className: 'w-[380px] h-[45px] bg-slate-800 rounded-3xl mx-auto text-center mt-[40px]',
+                        className: 'w-[380px] h-[45px] bg-slate-800 rounded-3xl mx-auto text-center mt-[32px]',
                         eventListener: [
                             {
                                 event: 'click',
@@ -64,11 +64,6 @@ export function obsPage3(){
     })
 }
 
-function render(page){
-    app.innerHTML = '';
-    app.append(page);
-}
-
 function goToNextPage(){
-    render(loginPage());
+    router.navigate('/login')
 }

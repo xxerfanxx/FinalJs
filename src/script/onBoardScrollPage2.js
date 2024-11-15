@@ -1,5 +1,5 @@
 import {El} from "./el.js";
-import { obsPage3 } from "./onBoardScrollPage3.js";
+import { router } from "./main.js";
 
 export function obsPage2(){
 
@@ -64,11 +64,6 @@ export function obsPage2(){
     })
 }
 
-function render(page){
-    app.innerHTML = '';
-    app.append(page);
-}
-
 function goToNextPage(){
-    render(obsPage3())
+    router.navigate('/obsp3')
 }

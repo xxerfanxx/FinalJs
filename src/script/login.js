@@ -1,5 +1,5 @@
 import {El} from "./el.js";
-import { homePage } from "./homePage.js";
+import { router } from "./main.js";
 
 export function loginPage(){
     return El({
@@ -200,11 +200,6 @@ function clearHighlight(element){
     element.parentElement.classList.remove('outline');
 }
 
-function render(page){
-    app.innerHTML = '';
-    app.append(page);
-}
-
 function goToNextPage(){
-    render(homePage())
+    router.navigate('/home')
 }

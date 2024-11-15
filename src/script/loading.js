@@ -1,6 +1,6 @@
 import {El} from "./el.js";
 import logo from '../assets/logo.svg';
-import { obsPage1 } from "./onBoardScrollPage1.js";
+import {router} from './main.js';
 
 let myvar;
 
@@ -53,15 +53,10 @@ export function startUpPage(){
     })
 };
 
-window.onload = ()=>{
-    showPage()
-}
-    
-function render(page){
-    app.innerHTML = '';
-    app.append(page);
+function showPage(){
+    console.log('hey')
+    if(window.location.href)
+    myvar = setTimeout(()=>{router.navigate('/welcome')}, 4000);
 }
 
-function showPage(){
-    myvar = setTimeout(()=>{render(obsPage1())}, 3000);
-}
+showPage()
