@@ -54,7 +54,6 @@ export function startUpPage(){
 };
 
 function showPage(){
-    console.log('hey')
     if(window.location.href)
     myvar = setTimeout(()=>{router.navigate('/welcome')}, 4000);
 }

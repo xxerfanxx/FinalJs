@@ -1,10 +1,3 @@
-// import {startUpPage} from './loading.js';
-// import {welcomePage} from './welcome.js';
-// import {obsPage1} from './onBoardScrollPage1.js';
-// import {obsPage2} from './onBoardScrollPage2.js';
-// import {obsPage3} from './onBoardScrollPage3.js';
-// import {loginPage} from './login.js';
-// import {homePage} from './homePage.js';
 import Navigo from 'navigo';
 
 const app = document.getElementById('app');
@@ -48,10 +41,9 @@ router
   })
   .resolve();
 
-// render(startUpPage());
-// render(welcomePage());
-// render(obsPage1());
-// render(obsPage2());
-// render(obsPage3());
-// render(loginPage());
-// render(homePage())
+  router
+  .on('/product/:id', async (params) =>{
+    const { productPage } = await import ('./productPage.js')
+    render(productPage(params.data.id));
+  })
+  .resolve();

@@ -1,5 +1,6 @@
 import { data } from "autoprefixer";
 import {El} from "./el.js";
+import { router } from "./main.js";
 
 let database;
 
@@ -39,10 +40,6 @@ let productContainer = El({
 function syncProducts(){
 
     let productList = [];
-    let pname;
-    let price;
-    let img;
-    let id;
 
     productContainer = El({
         element: 'ul',
@@ -52,18 +49,18 @@ function syncProducts(){
 
 try{
     for(let i = 0; i < database.length; i++){
-        pname = database[i]['title'];
-        price = `$ ${database[i]['price']}`;
-        img = database[i]['images'];
-        id = database[i]['id'];
-
+        let pname = database[i]['title'];
+        let price = `$ ${database[i]['price']}`;
+        let img = database[i]['images'];
+        let productId = database[i]['id'];
+        
         productContainer.append(El({
             element: 'li',
             className: 'product-template w-[182] h-[244px] flex flex-col ml-[12px] mb-[24px]',
             eventListener: [
                     {
                         event: 'click',
-                        callback: ()=>{redirectToProduct(id)}
+                        callback: ()=>{redirectToProduct(productId)}
                 }
             ],
             children: [
@@ -176,7 +173,7 @@ function setFilter(filters = []){
 }
 
 function redirectToProduct(id){
-    console.log(id)
+    router.navigate('/product/'+id)
 }
 
 export function homePage(){
@@ -590,8 +587,6 @@ function toggleColor(element){
                 break;
             }
         }
-
-        console.log(filterArr.length)
         
         if(filterArr.length == 0 || filterArr.includes('All')){
             categories[0]['isActive'] = 'active bg-black text-white'
@@ -627,19 +622,15 @@ function toggleColor(element){
             filterArr = [];
         }
     }
-
-    console.log(filterArr)
     setFilter(filterArr);
 }
 
 function setInputFilter(imgElement){
     let parent = imgElement.parentElement;
     let input = parent.children[1]
-    console.log(input.value.length)
     let text = input.value
     if(text.length == 0){
         getData();
-        console.log('hi')
     }
     else{
         
