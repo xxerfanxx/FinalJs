@@ -13,8 +13,5 @@
     "json-server"
   ],
   "author": "aliziaeijazi@gmail.com",
-  "license": "MIT",
-  "dependencies": {
-    "json-server": "^1.0.0-beta.3"
-  }
+  "license": "MIT"
 }
