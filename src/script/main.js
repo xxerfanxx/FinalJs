@@ -43,7 +43,8 @@ router
     render(productPage(params.data.id));
   })
   .on(`/cart`, async function () {
-    const {cartPage} = await import('./cartPage.js');
+    const {cartPage, getData} = await import('./cartPage.js');
     render(cartPage())
+    getData()
   })
   .resolve();

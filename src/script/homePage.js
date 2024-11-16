@@ -477,7 +477,7 @@ export function homePage(){
             productContainer,
             El({
                 element: 'div',
-                className: 'footer h-[66px] w-[428px] flex flex-row justify-evenly',
+                className: 'footer h-[66px] w-[428px] bg-white mt-[66px] flex flex-row justify-evenly bottom-0 position fixed',
                 children: [
                     El({
                         element: 'button',
@@ -512,7 +512,7 @@ export function homePage(){
                             }),
                             El({
                                 element: 'h1',
-                                className: 'button-text font-semibold text-[10px]',
+                                className: 'button-text font-semibold text-[10px] ml-[5px]',
                                 children: 'Cart'
                             })
                         ]
