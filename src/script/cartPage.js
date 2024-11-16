@@ -58,6 +58,7 @@ function createOrders(){
     let orderList = [];
     
     for(let i = 0; i < database.length; i++){
+        let productId = database[i].id
         let title = database[i].title;
         let price = database[i].price;
         let imgUrl = database[i].images;
@@ -65,7 +66,7 @@ function createOrders(){
 
         orderList.push(El({
             element: 'li',
-            className: 'order1 w-[360px] h-[150px] rounded-2xl bg-white shadow-xl m-2 flex flex-row justify-between',
+            className: 'order ' + productId + ' w-[360px] h-[150px] rounded-2xl bg-white shadow-xl m-2 flex flex-row justify-between',
             children: [
                 El({
                     element: 'div',
@@ -93,7 +94,13 @@ function createOrders(){
                                 }),
                                 El({
                                     element: 'img',
-                                    className: 'trash-can w-[24px] h-[24px] mt-[5px]',
+                                    className: 'trash-can ' + productId + ' w-[24px] h-[24px] mt-[5px]',
+                                    eventListener: [
+                                        {
+                                            event: 'click',
+                                            callback: (event)=>{remove(event.target)}
+                                        }
+                                    ],
                                     src: '/src/assets/trash-icon.svg'
                                 })
                             ]
@@ -113,7 +120,7 @@ function createOrders(){
                                     children: [
                                         El({
                                             element: 'button',
-                                            className: 'add-button w-[40px] text-center text-[24px] rounded-full',
+                                            className: 'add-button ' + productId + ' w-[40px] text-center text-[24px] rounded-full',
                                             eventListener: [
                                                 {
                                                     event: 'click',
@@ -129,11 +136,11 @@ function createOrders(){
                                         }),
                                         El({
                                             element: 'button',
-                                            className: 'remove-button w-[40px] text-center text-[24px] rounded-full',
+                                            className: 'reduce-button ' + productId + ' w-[40px] text-center text-[24px] rounded-full',
                                             eventListener: [
                                                 {
                                                     event: 'click',
-                                                    callback: (event)=>{remove(event.target)}
+                                                    callback: (event)=>{reduce(event.target)}
                                                 }
                                             ],
                                             children: ['-']
@@ -306,18 +313,49 @@ export function cartPage(){
     })
 }
 
-function add(element){
-
-}
-
-function remove(element){
-
-}
-
 function calculatePrice(){
     let sum = 0;
     for(let i = 0; i < database.length; i++){
         sum += Number(database[i].price) * Number(database[i].order);
     }
     return sum
+}
+
+async function updateOrder(id, count){
+    const url = "http://localhost:5173/Products/"+id;
+
+    const updateResponse = await fetch(`http://localhost:5173/Products/${id}`,{
+        method: 'PATCH',
+        headers: {'Content-Type': 'application/json'}, 
+        body: JSON.stringify({order: count})
+    })
+
+    getData()
+}
+
+function add(element){
+    let prodId = element.classList[1];
+    let parent = element.parentElement;
+    let countDisplay = parent.children[1];
+    let counter = +countDisplay.innerHTML
+    counter++
+    countDisplay.innerHTML = counter;
+    updateOrder(prodId, counter);
+}
+
+function reduce(element){
+    let prodId = element.classList[1];
+    let parent = element.parentElement;
+    let countDisplay = parent.children[1];
+    let counter = +countDisplay.innerHTML
+    if(counter > 1){
+        counter--;
+        countDisplay.innerHTML = counter;
+        updateOrder(prodId, counter);
+    }
+}
+
+function remove(element){
+    let prodId = element.classList[1];
+    updateOrder(prodId, 0);
 }
