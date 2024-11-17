@@ -8,7 +8,8 @@ let title;
 let publicId;
 let price;
 let isWishListed;
-let userCart;
+let userCart = [];
+let wishList = [];
 
 async function getData(id = publicId) {
 
@@ -45,6 +46,7 @@ async function getUserData(id = '1') {
       database = data;
 
       userCart = database.cart;
+      wishList = database.wishlist;
 
       for(let i = 0; i < database.cart.length; i++){
         if(database.cart[i].id == Number(publicId)){
@@ -61,6 +63,9 @@ async function getUserData(id = '1') {
             isWishListed = true
             break;
         }
+        else{
+            isWishListed = false;
+        }
       }
 
       updateInfo();
@@ -71,14 +76,27 @@ async function getUserData(id = '1') {
 }
 
 function updateInfo(){
+
+    for(let i = 0; i < wishList.length; i++){
+        if(wishList[i].id == publicId){
+            isWishListed = true
+            break;
+        }
+        else{
+            isWishListed = false
+        }
+    }
+
     app.children[0].children[0].children[1].children[0].src = imgUrl;
     app.children[0].children[1].children[0].children[0].innerHTML = title;
+    if(isWishListed){
+        app.children[0].children[1].children[0].children[1].src = '/src/assets/pink-heart-icon.png';
+    }
+    else{
+        app.children[0].children[1].children[0].children[1].src = '/src/assets/heart.svg';
+    }
     app.children[0].children[2].children[1].innerHTML = counter;
     app.children[0].children[3].children[0].innerHTML = '$ ' + price;
-
-    if(isWishListed){
-        app.children[0].children[1].children[0].children[1].src = ''
-    }
 }
 
 export function productPage(id){
@@ -158,6 +176,12 @@ export function productPage(id){
                         El({
                             element: 'img',
                             className: 'favorite-img w-[36px] h-[36px]',
+                            eventListener: [
+                                {
+                                    event: 'click',
+                                    callback: toggleWish
+                                }
+                            ],
                             src: '/src/assets/heart.svg'
                         })
                     ]
@@ -259,8 +283,39 @@ async function updateCart(){
         headers: {'Content-Type': 'application/json'}, 
         body: JSON.stringify({cart: userCart}) 
     })
+}
 
-    alert('cart updated')
+async function toggleWish(){
+    const url = "http://localhost:5173/users/1";
+
+    if(isWishListed){
+        for(let i = 0; i < wishList.length; i++){
+            if(wishList[i].id == publicId){
+                wishList.splice(i, 1)
+                isWishListed = false;
+                break;
+            }
+        }
+    }
+    else{
+        wishList.push({
+            id:publicId,
+            title,
+            price,
+            imgUrl,
+            counter
+        })
+        isWishListed = true;
+    }
+
+    const updateResponse = await fetch(url ,{
+    method: 'PATCH',
+    headers: {'Content-Type': 'application/json'}, 
+    body: JSON.stringify({wishlist: wishList}) 
+    })
+
+    updateInfo()
+    
 }
 
 function add(element){

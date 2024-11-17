@@ -11,18 +11,26 @@
           "title": "adidas",
           "price": 245,
           "imgUrl": "http://localhost:5173/products/adidas/1.webp",
-          "counter": 3
+          "counter": 6
+        }
+      ],
+      "orders": [],
+      "wishlist": [
+        {
+          "id": "1",
+          "title": "adidas",
+          "price": 245,
+          "imgUrl": "http://localhost:5173/products/adidas/1.webp",
+          "counter": 6
         },
         {
           "id": "2",
           "title": "adidas",
           "price": 145,
           "imgUrl": "http://localhost:5173/products/adidas/2.webp",
-          "counter": 7
+          "counter": 0
         }
-      ],
-      "orders": [],
-      "wishlist": []
+      ]
     }
   ],
   "Products": [

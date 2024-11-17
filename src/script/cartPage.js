@@ -5,6 +5,7 @@ let database;
 let counter = 0;
 let orders;
 let totalPrice;
+let userCart;
 
 function render(page){
     app.innerHTML = '';
@@ -22,6 +23,8 @@ export async function getData() {
   
       const data = await response.json();
       database = data;
+
+      userCart = database.cart;
 
       syncProducts()
       render(cartPage())
@@ -57,12 +60,12 @@ function createOrders(){
 
     let orderList = [];
     
-    for(let i = 0; i < database.length; i++){
-        let productId = database[i].id
-        let title = database[i].title;
-        let price = database[i].price;
-        let imgUrl = database[i].images;
-        let orderCount = +database[i].order;
+    for(let i = 0; i < database.cart.length; i++){
+        let productId = database.cart[i].id
+        let title = database.cart[i].title;
+        let price = database.cart[i].price;
+        let imgUrl = database.cart[i].imgUrl;
+        let orderCount = +database.cart[i].counter;
 
         orderList.push(El({
             element: 'li',
@@ -315,19 +318,32 @@ export function cartPage(){
 
 function calculatePrice(){
     let sum = 0;
-    for(let i = 0; i < database.length; i++){
-        sum += Number(database[i].price) * Number(database[i].order);
+    for(let i = 0; i < userCart.length; i++){
+        sum += Number(userCart[i].price) * Number(userCart[i].counter);
     }
     return sum
 }
 
-async function updateOrder(id, count){
-    const url = "http://localhost:5173/Products/"+id;
+async function updateOrder(userId = '1', prodId, counter){
+    const url = "http://localhost:5173/users/"+userId;
 
-    const updateResponse = await fetch(`http://localhost:5173/Products/${id}`,{
+    for(let i = 0; i < userCart.length; i++){
+        if(userCart[i].id == prodId){
+            if(counter == 0){
+                userCart.splice(i, 1);
+            }
+            else{
+                userCart[i].counter = counter;
+            }
+
+            break;
+        }
+    }
+
+    const updateResponse = await fetch(url,{
         method: 'PATCH',
         headers: {'Content-Type': 'application/json'}, 
-        body: JSON.stringify({order: count})
+        body: JSON.stringify({cart: userCart})
     })
 
     getData()
@@ -340,7 +356,7 @@ function add(element){
     let counter = +countDisplay.innerHTML
     counter++
     countDisplay.innerHTML = counter;
-    updateOrder(prodId, counter);
+    updateOrder('1', prodId, counter);
 }
 
 function reduce(element){
@@ -351,11 +367,11 @@ function reduce(element){
     if(counter > 1){
         counter--;
         countDisplay.innerHTML = counter;
-        updateOrder(prodId, counter);
+        updateOrder('1', prodId, counter);
     }
 }
 
 function remove(element){
     let prodId = element.classList[1];
-    updateOrder(prodId, 0);
+    updateOrder('1', prodId, 0);
 }
