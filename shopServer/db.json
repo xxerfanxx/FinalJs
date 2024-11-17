@@ -5,23 +5,23 @@
       "name": "Your Name",
       "email": "Your Email",
       "password": "Your Password",
-      "cart": [],
-      "orders": [
+      "cart": [
         {
           "id": "1",
           "title": "adidas",
           "price": 245,
           "imgUrl": "http://localhost:5173/products/adidas/1.webp",
-          "counter": 7
+          "counter": 3
         },
         {
           "id": "2",
           "title": "adidas",
           "price": 145,
           "imgUrl": "http://localhost:5173/products/adidas/2.webp",
-          "counter": 3
+          "counter": 7
         }
       ],
+      "orders": [],
       "wishlist": []
     }
   ],

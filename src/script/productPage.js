@@ -44,11 +44,11 @@ async function getUserData(id = '1') {
       const data = await response.json();
       database = data;
 
-      userCart = database.orders;
+      userCart = database.cart;
 
-      for(let i = 0; i < database.orders.length; i++){
-        if(database.orders[i].id == Number(publicId)){
-            counter = +database.orders[i].counter
+      for(let i = 0; i < database.cart.length; i++){
+        if(database.cart[i].id == Number(publicId)){
+            counter = +database.cart[i].counter
             break;
         }
         else{
@@ -216,7 +216,7 @@ export function productPage(id){
                             eventListener: [
                                 {
                                     event: 'click',
-                                    callback: updateOrder
+                                    callback: updateCart
                                 }
                             ],
                             children: ['Add to cart']
@@ -230,7 +230,7 @@ export function productPage(id){
     })
 };
 
-async function updateOrder(){
+async function updateCart(){
     const url = "http://localhost:5173/users/1";
 
     let productFound = false;
@@ -257,7 +257,7 @@ async function updateOrder(){
     const updateResponse = await fetch(url ,{
         method: 'PATCH',
         headers: {'Content-Type': 'application/json'}, 
-        body: JSON.stringify({orders: userCart}) 
+        body: JSON.stringify({cart: userCart}) 
     })
 
     alert('cart updated')

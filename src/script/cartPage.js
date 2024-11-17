@@ -12,7 +12,7 @@ function render(page){
 }
 
 export async function getData() {
-    const url = "http://localhost:5173/Products?order_gt=0";
+    const url = "http://localhost:5173/users/1";
 
     try {
       const response = await fetch(url);
