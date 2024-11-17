@@ -8,6 +8,7 @@ let title;
 let publicId;
 let price;
 let isWishListed;
+let userCart;
 
 async function getData(id = publicId) {
 
@@ -21,11 +22,46 @@ async function getData(id = publicId) {
       const data = await response.json();
       database = data;
 
-      counter = database.order
       imgUrl = database.images;
       title = database.title;
       price = database.price;
-      isWishListed = database.wished == true?true:false;
+
+      updateInfo();
+
+    } catch (error) {
+      console.error(error.message);
+    }
+}
+
+async function getUserData(id = '1') {
+    const url = "http://localhost:5173/users/" + id;
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`Response status: ${response.status}`);
+      }
+  
+      const data = await response.json();
+      database = data;
+
+      userCart = database.orders;
+
+      for(let i = 0; i < database.orders.length; i++){
+        if(database.orders[i].id == Number(publicId)){
+            counter = +database.orders[i].counter
+            break;
+        }
+        else{
+            counter = 0;
+        }
+      }
+
+      for(let i = 0; i < database.wishlist.length; i++){
+        if(database.wishlist[i].id == publicId){
+            isWishListed = true
+            break;
+        }
+      }
 
       updateInfo();
 
@@ -50,6 +86,7 @@ export function productPage(id){
     publicId = id;
 
     getData(id)
+    getUserData()
 
     return El({
         element: 'div',
@@ -194,12 +231,33 @@ export function productPage(id){
 };
 
 async function updateOrder(){
-    const url = "http://localhost:5173/Products/"+publicId;
+    const url = "http://localhost:5173/users/1";
 
-    const updateResponse = await fetch(`http://localhost:5173/Products/${publicId}`,{
+    let productFound = false;
+
+    for(let i = 0; i < userCart.length; i++){
+        if(userCart[i].id == publicId){
+            userCart[i].counter = counter;
+            productFound = true;
+            break;
+        }
+    }
+
+    if(!productFound){
+        userCart.push({
+            id:publicId,
+            title,
+            price,
+            imgUrl,
+            counter,
+            whished: isWishListed
+        })
+    }
+
+    const updateResponse = await fetch(url ,{
         method: 'PATCH',
         headers: {'Content-Type': 'application/json'}, 
-        body: JSON.stringify({order: counter}) 
+        body: JSON.stringify({orders: userCart}) 
     })
 
     alert('cart updated')
