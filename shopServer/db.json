@@ -24,17 +24,17 @@
           "counter": 6
         },
         {
-          "id": "2",
-          "title": "adidas",
-          "price": 145,
-          "imgUrl": "http://localhost:5173/products/adidas/2.webp",
-          "counter": 0
-        },
-        {
           "id": "16",
           "title": "asics",
           "price": 105,
           "imgUrl": "http://localhost:5173/products/asics/8.webp",
+          "counter": 0
+        },
+        {
+          "id": "14",
+          "title": "asics",
+          "price": 100,
+          "imgUrl": "http://localhost:5173/products/asics/6.webp",
           "counter": 0
         }
       ]

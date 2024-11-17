@@ -52,4 +52,9 @@ router
     render(cartPage())
     getData()
   })
+  .on(`/wishlist`, async function () {
+    const {wishlistPage, getUserData} = await import('./wishlistPage.js');
+    render(wishlistPage())
+    getUserData()
+  })
   .resolve();

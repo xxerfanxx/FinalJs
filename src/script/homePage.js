@@ -237,6 +237,12 @@ export function homePage(){
                             El({
                                 element: 'button',
                                 className: 'favorite-button w-fit h-fit ml-[16px]',
+                                eventListener: [
+                                    {
+                                        event: 'click',
+                                        callback: ()=>{router.navigate('/wishlist')}
+                                    }
+                                ],
                                 children: [
                                     El({
                                         element: 'img',
