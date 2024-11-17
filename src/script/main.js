@@ -42,6 +42,11 @@ router
     const { productPage } = await import ('./productPage.js')
     render(productPage(params.data.id));
   })
+  .on('/brands/:brand', async (params) =>{
+    const { brandPage , getBrandData} = await import ('./brandPage.js')
+    render(brandPage(params.data.brand));
+    getBrandData()
+  })
   .on(`/cart`, async function () {
     const {cartPage, getData} = await import('./cartPage.js');
     render(cartPage())

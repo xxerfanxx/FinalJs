@@ -120,7 +120,7 @@ export function productPage(id){
                     eventListener: [
                         {
                             event: 'click',
-                            callback: ()=>{router.navigate('/home')}
+                            callback: ()=>{history.back();}
                         }
                     ],
                     children: [

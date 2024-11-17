@@ -29,6 +29,13 @@
           "price": 145,
           "imgUrl": "http://localhost:5173/products/adidas/2.webp",
           "counter": 0
+        },
+        {
+          "id": "16",
+          "title": "asics",
+          "price": 105,
+          "imgUrl": "http://localhost:5173/products/asics/8.webp",
+          "counter": 0
         }
       ]
     }
@@ -601,6 +608,7 @@
         "teal",
         "gray"
       ],
+      "brand": "newbalance",
       "images": "http://localhost:5173/products/newbalance/6.webp"
     },
     {
@@ -657,7 +665,7 @@
         "teal",
         "gray"
       ],
-      "brand": "nike",
+      "brand": "newbalance",
       "images": "http://localhost:5173/products/nike/1.webp"
     },
     {

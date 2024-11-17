@@ -278,6 +278,12 @@ export function homePage(){
                     El({
                         element: 'div',
                         className: 'brand-container flex flex-col w-fit h-fit mr-[41px] ml-[6px]',
+                        eventListener: [
+                            {
+                                event: 'click',
+                                callback: ()=>{redirectToBrandPage('nike')}
+                            }
+                        ],
                         children: [
                             El({
                                 element: 'div',
@@ -300,6 +306,12 @@ export function homePage(){
                     El({
                         element: 'div',
                         className: 'brand-container flex flex-col w-fit h-fit mr-[41px]',
+                        eventListener: [
+                            {
+                                event: 'click',
+                                callback: ()=>{redirectToBrandPage('adidas')}
+                            }
+                        ],
                         children: [
                             El({
                                 element: 'div',
@@ -322,6 +334,12 @@ export function homePage(){
                     El({
                         element: 'div',
                         className: 'brand-container flex flex-col w-fit h-fit mr-[41px]',
+                        eventListener: [
+                            {
+                                event: 'click',
+                                callback: ()=>{redirectToBrandPage('puma')}
+                            }
+                        ],
                         children: [
                             El({
                                 element: 'div',
@@ -344,6 +362,12 @@ export function homePage(){
                     El({
                         element: 'div',
                         className: 'brand-container flex flex-col w-fit h-fit',
+                        eventListener: [
+                            {
+                                event: 'click',
+                                callback: ()=>{redirectToBrandPage('asics')}
+                            }
+                        ],
                         children: [
                             El({
                                 element: 'div',
@@ -366,6 +390,12 @@ export function homePage(){
                     El({
                         element: 'div',
                         className: 'brand-container flex flex-col w-fit h-fit mr-[41px] mt-[28px] ml-[6px]',
+                        eventListener: [
+                            {
+                                event: 'click',
+                                callback: ()=>{redirectToBrandPage('reebok')}
+                            }
+                        ],
                         children: [
                             El({
                                 element: 'div',
@@ -388,6 +418,12 @@ export function homePage(){
                     El({
                         element: 'div',
                         className: 'brand-container flex flex-col w-fit h-fit mr-[41px] mt-[28px]',
+                        eventListener: [
+                            {
+                                event: 'click',
+                                callback: ()=>{redirectToBrandPage('asics')}
+                            }
+                        ],
                         children: [
                             El({
                                 element: 'div',
@@ -643,4 +679,8 @@ function setInputFilter(imgElement){
         setFilter([input.value])
     }
         
+}
+
+function redirectToBrandPage(brandName){
+    router.navigate('/brands/' + brandName)
 }
