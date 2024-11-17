@@ -11,7 +11,39 @@
           "title": "adidas",
           "price": 245,
           "imgUrl": "http://localhost:5173/products/adidas/1.webp",
-          "counter": 8
+          "counter": 7
+        },
+        {
+          "id": "2",
+          "title": "adidas",
+          "price": 145,
+          "imgUrl": "http://localhost:5173/products/adidas/2.webp",
+          "counter": 1,
+          "whished": false
+        },
+        {
+          "id": "5",
+          "title": "adidas",
+          "price": 75,
+          "imgUrl": "http://localhost:5173/products/adidas/5.webp",
+          "counter": 1,
+          "whished": false
+        },
+        {
+          "id": "8",
+          "title": "adidas",
+          "price": 98,
+          "imgUrl": "http://localhost:5173/products/adidas/8.webp",
+          "counter": 1,
+          "whished": false
+        },
+        {
+          "id": "12",
+          "title": "asics",
+          "price": 165,
+          "imgUrl": "http://localhost:5173/products/asics/4.webp",
+          "counter": 1,
+          "whished": false
         }
       ],
       "orders": [],

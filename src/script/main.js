@@ -57,4 +57,9 @@ router
     render(wishlistPage())
     getUserData()
   })
+  .on(`/checkout`, async function () {
+    const {checkoutPage, getCheckoutData} = await import('./checkoutPage.js');
+    render(checkoutPage())
+    getCheckoutData()
+  })
   .resolve();

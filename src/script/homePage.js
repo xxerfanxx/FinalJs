@@ -1,4 +1,3 @@
-import { data } from "autoprefixer";
 import {El} from "./el.js";
 import { router } from "./main.js";
 

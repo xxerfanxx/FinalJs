@@ -210,6 +210,12 @@ export function cartPage(){
                     El({
                         element: 'button',
                         className: 'submit w-[200px] bg-black rounded-3xl text-white text-center text-[24px] font-semibold',
+                        eventListener: [
+                            {
+                                event: 'click',
+                                callback: ()=>{router.navigate('/checkout')}
+                            }
+                        ],
                         children: ['Checkout']
                     })
                 ]
