@@ -62,4 +62,8 @@ router
     render(checkoutPage())
     getCheckoutData()
   })
+  .on(`/checkout/address`, async function () {
+    const {addressPage} = await import('./addressPage.js');
+    render(addressPage())
+  })
   .resolve();

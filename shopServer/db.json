@@ -2,9 +2,9 @@
   "users": [
     {
       "id": "1",
-      "name": "Your Name",
-      "email": "Your Email",
-      "password": "Your Password",
+      "name": "Erfan",
+      "email": "erfan.ghasemian83@gmail.com",
+      "password": "Erfan.1383",
       "cart": [
         {
           "id": "1",
@@ -46,6 +46,7 @@
           "whished": false
         }
       ],
+      "locations": [],
       "orders": [],
       "wishlist": [
         {
