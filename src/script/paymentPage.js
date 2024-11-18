@@ -201,7 +201,7 @@ function createOrder(){
         id = database.orders.at(-1).id + 1;
     }
 
-    let prodcutList = database.cart;
+    let productList = database.cart;
     let address = structuredClone(database.defaultLocation);
     let shipping = structuredClone(database.defaultShipping);
     let payment = selectedPayment;
@@ -212,7 +212,7 @@ function createOrder(){
             address,
             shipping,
             payment,
-            prodcuts: prodcutList
+            products: productList
         }
     )
 

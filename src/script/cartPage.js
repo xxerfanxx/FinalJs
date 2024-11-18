@@ -227,16 +227,16 @@ export function cartPage(){
             El({
                 element: 'div',
                 className: 'footer h-[66px] w-[428px] bg-white mt-[12px] flex flex-row justify-evenly bottom-0 position fixed',
-                eventListener: [
-                    {
-                        event : 'click',
-                        callback: ()=>{router.navigate('/home')}
-                    }
-                ],
                 children: [
                     El({
                         element: 'button',
                         className: 'home-button w-[29px] h-[38px] flex flex-col mt-[12px]',
+                        eventListener: [
+                            {
+                                event : 'click',
+                                callback: ()=>{router.navigate('/home')}
+                            }
+                        ],
                         children: [
                             El({
                                 element: 'img',
@@ -275,6 +275,12 @@ export function cartPage(){
                     El({
                         element: 'button',
                         className: 'orders-button w-[29px] h-[38px] flex flex-col mt-[12px]',
+                        eventListener: [
+                            {
+                                event : 'click',
+                                callback: ()=>{router.navigate('/orders')}
+                            }
+                        ],
                         children: [
                             El({
                                 element: 'img',

@@ -75,4 +75,9 @@ router
     const {paymentPage} = await import('./paymentPage.js');
     render(paymentPage())
   })
+  .on(`/orders`, async function () {
+    const {orderPage, getOrdersData} = await import('./orderPage.js');
+    render(orderPage())
+    getOrdersData()
+  })
   .resolve();

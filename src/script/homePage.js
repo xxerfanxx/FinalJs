@@ -561,6 +561,12 @@ export function homePage(){
                     El({
                         element: 'button',
                         className: 'orders-button w-[29px] h-[38px] flex flex-col mt-[12px]',
+                        eventListener: [
+                            {
+                                event : 'click',
+                                callback: ()=>{router.navigate('/orders')}
+                            }
+                        ],
                         children: [
                             El({
                                 element: 'img',
