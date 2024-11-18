@@ -168,6 +168,33 @@ export function checkoutPage(){
                     })
                 ]
             }),
+            El({
+                element: 'div',
+                className: 'address w-[380px] h-[100px] flex flex-row mx-auto my-4 shadow-md rounded-3xl',
+                children: [
+                    El({
+                        element: 'img',
+                        className: 'w-[25px] h-[25px] my-auto mx-[25px]',
+                        src: '/src/assets/map-icon.png'
+                    }),
+                    El({
+                        element: 'p',
+                        className: 'address-text my-auto',
+                        children: ['Mazandaran, Amirkola, 123345394']
+                    }),
+                    El({
+                        element: 'img',
+                        className: 'w-[25px] h-[25px] my-auto mx-[25px]',
+                        eventListener: [
+                            {
+                                event: 'click',
+                                callback: ()=>{router.navigate('/checkout/address')}
+                            }
+                        ],
+                        src: '/src/assets/edit-icon.png'
+                    })
+                ]
+            }),
             orders,
             El({
                 element: 'div',
