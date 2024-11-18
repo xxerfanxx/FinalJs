@@ -6,6 +6,7 @@ let counter = 0;
 let orders;
 let totalPrice;
 let userCart;
+let shippingType;
 let selectedLocation = {};
 let shippingPrice = '-';
 let productsPrice = '-'
@@ -27,8 +28,18 @@ export async function getCheckoutData() {
   
       const data = await response.json();
       database = data;
-      shippingPrice = +data.defaultShipping.price
-      selectedLocation = structuredClone(data.defaultLocation)
+      shippingPrice = +data.defaultShipping.price;
+      shippingType = data.defaultShipping.type;
+
+      if(!shippingType){
+        shippingType = 'Choose Shipping Type'
+      }
+
+      if(!shippingPrice){
+        shippingPrice = '-'
+      }
+
+      selectedLocation = structuredClone(data.defaultLocation);
 
       userCart = database.cart;
 
@@ -215,7 +226,7 @@ export function checkoutPage(){
                     El({
                         element: 'p',
                         className: 'address-text my-auto w-[300px]',
-                        children: ['Choose Shipping Type']
+                        children: [shippingType]
                     }),
                     El({
                         element: 'img',

@@ -51,8 +51,8 @@
         "location": "Tehran, tehran pars"
       },
       "defaultShipping": {
-        "type": "Regular",
-        "price": 15
+        "type": "Fast",
+        "price": 30
       },
       "locations": [
         {
