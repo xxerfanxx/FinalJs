@@ -52,7 +52,7 @@
       },
       "defaultShipping": {
         "type": "Regular",
-        "price": "$15"
+        "price": 15
       },
       "locations": [
         {

@@ -7,6 +7,9 @@ let orders;
 let totalPrice;
 let userCart;
 let selectedLocation = {};
+let shippingPrice = '-';
+let productsPrice = '-'
+let discount = '-';
 
 function render(page){
     app.innerHTML = '';
@@ -24,6 +27,7 @@ export async function getCheckoutData() {
   
       const data = await response.json();
       database = data;
+      shippingPrice = +data.defaultShipping.price
       selectedLocation = structuredClone(data.defaultLocation)
 
       userCart = database.cart;
@@ -47,7 +51,7 @@ function syncProducts(){
 
     orders = El({
         element: 'ul',
-        className: 'order-container w-[380px] h-full mx-auto mt-[12px] overflow-y-auto flex flex-col',
+        className: 'order-container w-[380px] h-full py-4 mx-auto mt-[12px] overflow-y-auto flex flex-col',
         children: ordersList
     })
 
@@ -56,17 +60,13 @@ function syncProducts(){
         className: 'title font-semibold text-[20px] text-center',
         children: ['$' + calculatePrice()]
     })
+
+    productsPrice = calculatePrice();
 }
 
 function createOrders(){
 
-    let orderList = [
-        El({
-            element: 'h1',
-            className: 'orders-title w-380px text-[20px] mx-2 mb-4 font-medium border-t-2 border-b-black',
-            children: ['order List']
-        })
-    ];
+    let orderList = [];
     
     for(let i = 0; i < database.cart.length; i++){
         let productId = database.cart[i].id
@@ -181,7 +181,7 @@ export function checkoutPage(){
                     }),
                     El({
                         element: 'p',
-                        className: 'address-text my-auto',
+                        className: 'address-text my-auto w-[300px]',
                         children: [selectedLocation.title + ': ' + selectedLocation.location]
                     }),
                     El({
@@ -197,7 +197,39 @@ export function checkoutPage(){
                     })
                 ]
             }),
+            El({
+                element: 'h1',
+                className: 'orders-title w-380px text-[20px] mx-6 mb-4 font-medium border-t-2 border-b-black',
+                children: ['order List']
+            }),
             orders,
+            El({
+                element: 'div',
+                className: 'shipping w-[380px] h-[100px] flex flex-row mx-auto mb-4 mt-6 shadow-md rounded-3xl',
+                children: [
+                    El({
+                        element: 'img',
+                        className: 'w-[25px] h-[25px] my-auto mx-[25px]',
+                        src: '/src/assets/shipping-icon.png'
+                    }),
+                    El({
+                        element: 'p',
+                        className: 'address-text my-auto w-[300px]',
+                        children: ['Choose Shipping Type']
+                    }),
+                    El({
+                        element: 'img',
+                        className: 'w-[25px] h-[25px] my-auto mx-[25px]',
+                        eventListener: [
+                            {
+                                event: 'click',
+                                callback: ()=>{router.navigate('/checkout/shipping')}
+                            }
+                        ],
+                        src: '/src/assets/right-arrow-icon.png'
+                    })
+                ]
+            }),
             El({
                 element: 'div',
                 className: 'price-table w-[380px] h-[400px] mt-6 rounded-3xl m-auto bg-gray-50 shadow-md flex flex-col font-thin',
@@ -226,7 +258,7 @@ export function checkoutPage(){
                             El({
                                 element: 'p',
                                 className: 'shipping-amount text-[20px] font-semibold',
-                                children: ['-']
+                                children: ['$' + shippingPrice]
                             })
                         ]
                     }),
@@ -258,7 +290,7 @@ export function checkoutPage(){
                             El({
                                 element: 'p',
                                 className: 'total-amount text-[20px] font-semibold',
-                                children: ['-']
+                                children: ['$' + calculateTotalPrice()]
                             })
                         ]
                     })
@@ -286,4 +318,28 @@ function calculatePrice(){
         sum += Number(userCart[i].price) * Number(userCart[i].counter);
     }
     return sum
+}
+
+
+function calculateTotalPrice(){
+
+    let sum = 0;
+    
+    if(!isNaN(productsPrice)){
+        sum += productsPrice;
+    }
+
+    if(!isNaN(shippingPrice)){
+        sum += shippingPrice;
+    }
+
+    if(!isNaN(discount)){
+        sum -= discount
+    }
+
+    if(sum < 0){
+        sum = 0;
+    }
+
+    return sum;
 }

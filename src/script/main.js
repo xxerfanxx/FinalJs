@@ -67,4 +67,8 @@ router
     render(addressPage())
     getLoactionsData()
   })
+  .on(`/checkout/shipping`, async function () {
+    const {shippingPage} = await import('./shippingPage.js');
+    render(shippingPage())
+  })
   .resolve();
