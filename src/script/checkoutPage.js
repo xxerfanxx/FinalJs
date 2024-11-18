@@ -6,6 +6,7 @@ let counter = 0;
 let orders;
 let totalPrice;
 let userCart;
+let selectedLocation = {};
 
 function render(page){
     app.innerHTML = '';
@@ -23,6 +24,7 @@ export async function getCheckoutData() {
   
       const data = await response.json();
       database = data;
+      selectedLocation = structuredClone(data.defaultLocation)
 
       userCart = database.cart;
 
@@ -163,7 +165,7 @@ export function checkoutPage(){
                     }),
                     El({
                         element: 'h1',
-                        className: 'brand-name text-[28px] font-semibold my-4 ml-[-24px]',
+                        className: 'page-title text-[28px] font-semibold my-4 ml-[-24px]',
                         children: ['Checkout']
                     })
                 ]
@@ -180,7 +182,7 @@ export function checkoutPage(){
                     El({
                         element: 'p',
                         className: 'address-text my-auto',
-                        children: ['Mazandaran, Amirkola, 123345394']
+                        children: [selectedLocation.title + ': ' + selectedLocation.location]
                     }),
                     El({
                         element: 'img',

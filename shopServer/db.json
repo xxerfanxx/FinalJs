@@ -46,7 +46,28 @@
           "whished": false
         }
       ],
-      "locations": [],
+      "defaultLocation": {
+        "title": "Tehran",
+        "location": "Tehran, tehran pars"
+      },
+      "defaultShipping": {
+        "type": "Regular",
+        "price": "$15"
+      },
+      "locations": [
+        {
+          "title": "Home",
+          "location": "Mazandaran, Babol, Amirkola, 1294043"
+        },
+        {
+          "title": "Tehran",
+          "location": "Tehran, tehran pars"
+        },
+        {
+          "title": "example",
+          "location": "this is example, example street, 2332"
+        }
+      ],
       "orders": [],
       "wishlist": [
         {

@@ -1,6 +1,5 @@
 import { router } from "./main.js";
 import { El } from "./el";
-import { cartPage } from "./cartPage.js";
 
 let publicBrand;
 let database;
