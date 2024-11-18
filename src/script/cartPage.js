@@ -26,6 +26,10 @@ export async function getData() {
 
       userCart = database.cart;
 
+      if(userCart == ''){
+        userCart = []
+      }
+
       syncProducts()
       render(cartPage())
 

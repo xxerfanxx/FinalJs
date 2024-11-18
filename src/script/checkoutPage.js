@@ -315,6 +315,12 @@ export function checkoutPage(){
                     El({
                         element: 'button',
                         className: 'submit w-[380px] h-[50px] mx-auto my-4 bg-black rounded-3xl text-white text-center text-[18px] font-semibold',
+                        eventListener: [
+                            {
+                                event: 'click',
+                                callback: ()=>{router.navigate('/checkout/payment')}
+                            }
+                        ],
                         children: ['continue to payment ->']
                     })
                 ]

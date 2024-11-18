@@ -46,6 +46,9 @@ async function getUserData(id = '1') {
       database = data;
 
       userCart = database.cart;
+      if(userCart == ''){
+        userCart = [];
+      }
       wishList = database.wishlist;
 
       for(let i = 0; i < database.cart.length; i++){

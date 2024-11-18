@@ -5,54 +5,14 @@
       "name": "Erfan",
       "email": "erfan.ghasemian83@gmail.com",
       "password": "Erfan.1383",
-      "cart": [
-        {
-          "id": "1",
-          "title": "adidas",
-          "price": 245,
-          "imgUrl": "http://localhost:5173/products/adidas/1.webp",
-          "counter": 7
-        },
-        {
-          "id": "2",
-          "title": "adidas",
-          "price": 145,
-          "imgUrl": "http://localhost:5173/products/adidas/2.webp",
-          "counter": 1,
-          "whished": false
-        },
-        {
-          "id": "5",
-          "title": "adidas",
-          "price": 75,
-          "imgUrl": "http://localhost:5173/products/adidas/5.webp",
-          "counter": 1,
-          "whished": false
-        },
-        {
-          "id": "8",
-          "title": "adidas",
-          "price": 98,
-          "imgUrl": "http://localhost:5173/products/adidas/8.webp",
-          "counter": 1,
-          "whished": false
-        },
-        {
-          "id": "12",
-          "title": "asics",
-          "price": 165,
-          "imgUrl": "http://localhost:5173/products/asics/4.webp",
-          "counter": 1,
-          "whished": false
-        }
-      ],
+      "cart": "",
       "defaultLocation": {
-        "title": "Tehran",
-        "location": "Tehran, tehran pars"
+        "title": "Home",
+        "location": "Mazandaran, Babol, Amirkola, 1294043"
       },
       "defaultShipping": {
-        "type": "Fast",
-        "price": 30
+        "type": "Regular",
+        "price": 15
       },
       "locations": [
         {
@@ -68,7 +28,239 @@
           "location": "this is example, example street, 2332"
         }
       ],
-      "orders": [],
+      "orders": [
+        {
+          "id": 1,
+          "address": {
+            "title": "Tehran",
+            "location": "Tehran, tehran pars"
+          },
+          "shipping": {
+            "type": "Fast",
+            "price": 30
+          },
+          "payment": "card",
+          "prodcuts": [
+            {
+              "id": "1",
+              "title": "adidas",
+              "price": 245,
+              "imgUrl": "http://localhost:5173/products/adidas/1.webp",
+              "counter": 7
+            },
+            {
+              "id": "2",
+              "title": "adidas",
+              "price": 145,
+              "imgUrl": "http://localhost:5173/products/adidas/2.webp",
+              "counter": 1,
+              "whished": false
+            },
+            {
+              "id": "5",
+              "title": "adidas",
+              "price": 75,
+              "imgUrl": "http://localhost:5173/products/adidas/5.webp",
+              "counter": 1,
+              "whished": false
+            },
+            {
+              "id": "8",
+              "title": "adidas",
+              "price": 98,
+              "imgUrl": "http://localhost:5173/products/adidas/8.webp",
+              "counter": 1,
+              "whished": false
+            },
+            {
+              "id": "12",
+              "title": "asics",
+              "price": 165,
+              "imgUrl": "http://localhost:5173/products/asics/4.webp",
+              "counter": 1,
+              "whished": false
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "address": {
+            "title": "Tehran",
+            "location": "Tehran, tehran pars"
+          },
+          "shipping": {
+            "type": "Fast",
+            "price": 30
+          },
+          "payment": "card",
+          "prodcuts": [
+            {
+              "id": "1",
+              "title": "adidas",
+              "price": 245,
+              "imgUrl": "http://localhost:5173/products/adidas/1.webp",
+              "counter": 7
+            },
+            {
+              "id": "2",
+              "title": "adidas",
+              "price": 145,
+              "imgUrl": "http://localhost:5173/products/adidas/2.webp",
+              "counter": 1,
+              "whished": false
+            },
+            {
+              "id": "5",
+              "title": "adidas",
+              "price": 75,
+              "imgUrl": "http://localhost:5173/products/adidas/5.webp",
+              "counter": 1,
+              "whished": false
+            },
+            {
+              "id": "8",
+              "title": "adidas",
+              "price": 98,
+              "imgUrl": "http://localhost:5173/products/adidas/8.webp",
+              "counter": 1,
+              "whished": false
+            },
+            {
+              "id": "12",
+              "title": "asics",
+              "price": 165,
+              "imgUrl": "http://localhost:5173/products/asics/4.webp",
+              "counter": 1,
+              "whished": false
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "address": {
+            "title": "Tehran",
+            "location": "Tehran, tehran pars"
+          },
+          "shipping": {
+            "type": "Fast",
+            "price": 30
+          },
+          "payment": "card",
+          "prodcuts": ""
+        },
+        {
+          "id": 4,
+          "address": {
+            "title": "Tehran",
+            "location": "Tehran, tehran pars"
+          },
+          "shipping": {
+            "type": "Fast",
+            "price": 30
+          },
+          "payment": "card",
+          "prodcuts": ""
+        },
+        {
+          "id": 5,
+          "address": {
+            "title": "Tehran",
+            "location": "Tehran, tehran pars"
+          },
+          "shipping": {
+            "type": "Fast",
+            "price": 30
+          },
+          "payment": "card",
+          "prodcuts": ""
+        },
+        {
+          "id": 6,
+          "address": {
+            "title": "Tehran",
+            "location": "Tehran, tehran pars"
+          },
+          "shipping": {
+            "type": "Fast",
+            "price": 30
+          },
+          "prodcuts": [
+            {}
+          ]
+        },
+        {
+          "id": 7,
+          "address": {
+            "title": "Tehran",
+            "location": "Tehran, tehran pars"
+          },
+          "shipping": {
+            "type": "Fast",
+            "price": 30
+          },
+          "prodcuts": [
+            {}
+          ]
+        },
+        {
+          "id": 8,
+          "address": {
+            "title": "Tehran",
+            "location": "Tehran, tehran pars"
+          },
+          "shipping": {
+            "type": "Fast",
+            "price": 30
+          },
+          "prodcuts": [
+            {}
+          ]
+        },
+        {
+          "id": 9,
+          "address": {
+            "title": "Tehran",
+            "location": "Tehran, tehran pars"
+          },
+          "shipping": {
+            "type": "Fast",
+            "price": 30
+          },
+          "prodcuts": [
+            {}
+          ]
+        },
+        {
+          "id": 10,
+          "address": {
+            "title": "Home",
+            "location": "Mazandaran, Babol, Amirkola, 1294043"
+          },
+          "shipping": {
+            "type": "Regular",
+            "price": 15
+          },
+          "payment": "card",
+          "prodcuts": [
+            {
+              "id": "1",
+              "title": "adidas",
+              "price": 245,
+              "imgUrl": "http://localhost:5173/products/adidas/1.webp",
+              "counter": 1,
+              "whished": true
+            },
+            {
+              "id": "2",
+              "title": "adidas",
+              "price": 145,
+              "imgUrl": "http://localhost:5173/products/adidas/2.webp",
+              "counter": 1,
+              "whished": false
+            }
+          ]
+        }
+      ],
       "wishlist": [
         {
           "id": "1",
