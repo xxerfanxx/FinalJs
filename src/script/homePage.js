@@ -2,6 +2,8 @@ import {El} from "./el.js";
 import { router } from "./main.js";
 
 let database;
+let searchHistory = [];
+let searchHistoryContainer;
 
 async function getData() {
     const url = "http://localhost:5173/Products";
@@ -167,7 +169,6 @@ function setFilter(filters = []){
         syncProducts();
         render(homePage());
         database = structuredClone(back_up_database)
-        console.log('d')
     }
 }
 
@@ -256,7 +257,7 @@ export function homePage(){
             }),
             El({
                 element: 'div',
-                className: 'search flex flex-row w-[380px] h-[37px] mx-auto mt-[8px] bg-slate-50 rounded-sm overflow-hidden',
+                className: 'search flex flex-row w-[380px] min-h-[37px] h-fit mx-auto mt-[8px] bg-slate-50 rounded-sm overflow-hidden',
                 children: [
                     El({
                         element: 'img',
@@ -271,10 +272,25 @@ export function homePage(){
                     }),
                     El({
                         element: 'input',
-                        className: 'search-bar-input w-full h-full bg-transparent focus:outline-none',
+                        className: 'search-bar-input w-full h-full my-auto bg-transparent focus:outline-none',
+                        eventListener: [
+                            {
+                                event: 'focusin',
+                                callback: showSearchHistory
+                            },
+                            {
+                                event: 'focusout',
+                                callback: hideSearchHistory
+                            }
+                        ],
                         placeholder: 'Search'
-                    })
+                    }),
                 ]
+            }),
+            El({
+                element: 'ul',
+                className: 'search-history-container w-[380px] my-2 ml-6 pl-2 overflow-hidden h-fit mx-auto shadow-md rounded-2xl absolute hidden bg-gray-50',
+                children: searchHistoryContainer
             }),
             El({
                 element: 'div',
@@ -687,6 +703,7 @@ function setInputFilter(imgElement){
     }
     else{
         
+        searchHistory.push(input.value)
         setFilter([input.value])
     }
         
@@ -694,4 +711,41 @@ function setInputFilter(imgElement){
 
 function redirectToBrandPage(brandName){
     router.navigate('/brands/' + brandName)
+}
+
+function showSearchHistory(){
+
+    app.children[0].children[2].classList.remove('hidden')
+    let historyList = [];
+    
+    for(let i = 0; i < searchHistory.length; i++){
+        console.log(searchHistory)
+        historyList.push(El({
+            element: 'li',
+            className: 'history' + i + ' w-full h-fit border-y-2 border-y-gray-50',
+            eventListener: [
+                {
+                    event: 'click',
+                    callback: ()=>{console.log('hi')}
+                }
+            ],
+            children: [
+                El({
+                    element: 'h1',
+                    className: 'text-[12px] font-md',
+                    children: [searchHistory[i]]
+                })
+            ]
+        }))
+    }
+    app.children[0].children[2]
+    searchHistoryContainer = historyList
+}
+
+function hideSearchHistory(){
+    app.children[0].children[2].classList.add('hidden')
+}
+
+function setInputText(text){
+    console.log(text)
 }
