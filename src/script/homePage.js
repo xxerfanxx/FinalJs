@@ -277,11 +277,11 @@ export function homePage(){
                         eventListener: [
                             {
                                 event: 'focusin',
-                                callback: ()=>{syncHistory(),showSearchHistory()}
+                                callback: ()=>{syncHistory(), showSearchHistory()}
                             },
                             {
                                 event: 'focusout',
-                                callback: hideSearchHistory
+                                callback: ()=>{ setTimeout(()=>{hideSearchHistory()}, 100)}
                             }
                         ],
                         placeholder: 'Search'
@@ -752,5 +752,5 @@ function hideSearchHistory(){
 }
 
 function setInputText(text){
-    console.log(app.children[0].children)
+    app.children[0].children[1].children[1].value = text
 }
