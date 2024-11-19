@@ -17,6 +17,7 @@ async function getData() {
       database = data;
 
       syncProducts()
+      syncHistory()
       render(homePage())
 
     } catch (error) {
@@ -276,7 +277,7 @@ export function homePage(){
                         eventListener: [
                             {
                                 event: 'focusin',
-                                callback: showSearchHistory
+                                callback: ()=>{syncHistory(),showSearchHistory()}
                             },
                             {
                                 event: 'focusout',
@@ -698,15 +699,18 @@ function setInputFilter(imgElement){
     let parent = imgElement.parentElement;
     let input = parent.children[1]
     let text = input.value
+
+    if(text.length > 0 && !searchHistory.includes(input.value)){
+       searchHistory.push(input.value)
+    }
+    
     if(text.length == 0){
         getData();
     }
     else{
-        
-        searchHistory.push(input.value)
         setFilter([input.value])
     }
-        
+    app.children[0].children[1].children[1].value = searchHistory.at(-1)
 }
 
 function redirectToBrandPage(brandName){
@@ -714,19 +718,20 @@ function redirectToBrandPage(brandName){
 }
 
 function showSearchHistory(){
-
     app.children[0].children[2].classList.remove('hidden')
+}
+
+function syncHistory(){
     let historyList = [];
     
     for(let i = 0; i < searchHistory.length; i++){
-        console.log(searchHistory)
         historyList.push(El({
             element: 'li',
-            className: 'history' + i + ' w-full h-fit border-y-2 border-y-gray-50',
+            className: 'history' + i + ' w-full h-[24px] border-y-2 border-y-gray-50',
             eventListener: [
                 {
                     event: 'click',
-                    callback: ()=>{console.log('hi')}
+                    callback: (event)=>{setInputText(event.target.innerText)}
                 }
             ],
             children: [
@@ -738,7 +743,7 @@ function showSearchHistory(){
             ]
         }))
     }
-    app.children[0].children[2]
+
     searchHistoryContainer = historyList
 }
 
@@ -747,5 +752,5 @@ function hideSearchHistory(){
 }
 
 function setInputText(text){
-    console.log(text)
+    console.log(app.children[0].children)
 }
