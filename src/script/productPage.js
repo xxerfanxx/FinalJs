@@ -149,11 +149,22 @@ export function productPage(id){
                             children: [
                                 El({
                                     element: 'li',
-                                    className:'bar1',
+                                    className:'bar flex flex-row',
                                     children: [
                                         El({
                                             element: 'img',
-                                            src: '/src/assets/'
+                                            className: 'w-[50px] h-[36px] mx-2',
+                                            src: '/src/assets/bar-icon.png'
+                                        }),
+                                        El({
+                                            element: 'img',
+                                            className: 'w-[16px] h-[16px] mx-2 mt-2',
+                                            src: '/src/assets/black-circle-icon.png'
+                                        }),
+                                        El({
+                                            element: 'img',
+                                            className: 'w-[16px] h-[16px] mx-2 mt-2',
+                                            src: '/src/assets/black-circle-icon.png'
                                         })
                                     ]
                                 })
