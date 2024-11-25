@@ -70,6 +70,8 @@ function createOrders(){
         let price = database.cart[i].price;
         let imgUrl = database.cart[i].imgUrl;
         let orderCount = +database.cart[i].counter;
+        let size = database.cart[i].size;
+        let color = database.cart[i].color;
 
         orderList.push(El({
             element: 'li',
@@ -114,7 +116,35 @@ function createOrders(){
                         }),
                         El({
                             element: 'div',
-                            className: 'bottom-row flex flex-row w-[180px] h-fit mr-[12px] mt-[48px] justify-between',
+                            className: 'middle-row flex flex-row w-[180px] h-fit mr-[12px] justify-between',
+                            children: [
+                                El({
+                                    element: 'div',
+                                    className: 'size rounded-full w-8 h-8 font-bold mr-2 border-2 border-black text-center',
+                                    children: [
+                                        El({
+                                            element: 'p',
+                                            className: 'size-text ml-[-2px] w-8 h-8',
+                                            children: [size]
+                                        })
+                                    ]
+                                }),
+                                El({
+                                    element: 'li',
+                                    className: `color rounded-full w-8 h-8 font-bold mr-2 text-center bg-${color}`,
+                                    children: [
+                                        El({
+                                            element: 'p',
+                                            className: 'color-text ml-[-2px] w-8 h-8 text-[16px] mt-2 text-black drop-shadow-md',
+                                            children: [color]
+                                        })
+                                    ]
+                                })
+                            ]
+                        }),
+                        El({
+                            element: 'div',
+                            className: 'bottom-row flex flex-row w-[180px] h-fit mr-[12px] justify-between mt-2',
                             children: [
                                 El({
                                     element: 'h1',
