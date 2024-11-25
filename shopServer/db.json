@@ -7,8 +7,8 @@
       "password": "Erfan.1383",
       "cart": "",
       "defaultLocation": {
-        "title": "example2",
-        "location": "adsflkfasdlljk;adl;j;jl;jlafjl;afj;a"
+        "title": "Tehran",
+        "location": "Tehran, tehran pars"
       },
       "defaultShipping": {
         "type": "Fast",
@@ -106,16 +106,75 @@
               "whished": false
             }
           ]
+        },
+        {
+          "id": 3,
+          "address": {
+            "title": "example2",
+            "location": "adsflkfasdlljk;adl;j;jl;jlafjl;afj;a"
+          },
+          "shipping": {
+            "type": "Fast",
+            "price": 30
+          },
+          "payment": "card",
+          "products": [
+            {
+              "id": "1",
+              "title": "adidas",
+              "price": 245,
+              "imgUrl": "http://localhost:5173/products/adidas/1.webp",
+              "counter": 1,
+              "whished": true
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "address": {
+            "title": "example2",
+            "location": "adsflkfasdlljk;adl;j;jl;jlafjl;afj;a"
+          },
+          "shipping": {
+            "type": "Regular",
+            "price": 15
+          },
+          "payment": "wallet",
+          "products": [
+            {
+              "id": "3",
+              "title": "adidas",
+              "price": 110,
+              "imgUrl": "http://localhost:5173/products/adidas/3.webp",
+              "counter": 3,
+              "whished": false
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "address": {
+            "title": "Tehran",
+            "location": "Tehran, tehran pars"
+          },
+          "shipping": {
+            "type": "Fast",
+            "price": 30
+          },
+          "payment": "card",
+          "products": [
+            {
+              "id": "33",
+              "title": "nike",
+              "price": 110,
+              "imgUrl": "http://localhost:5173/products/nike/1.webp",
+              "counter": 3,
+              "whished": false
+            }
+          ]
         }
       ],
       "wishlist": [
-        {
-          "id": "1",
-          "title": "adidas",
-          "price": 245,
-          "imgUrl": "http://localhost:5173/products/adidas/1.webp",
-          "counter": 6
-        },
         {
           "id": "16",
           "title": "asics",
