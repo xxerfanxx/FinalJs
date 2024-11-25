@@ -218,23 +218,76 @@ export function productPage(id){
                                 }),
                                 El({
                                     element: 'ul',
-                                    className: 'Sizes flex flex-row mx-2 w-[150px] overflow-y-auto',
+                                    className: 'Sizes flex flex-row mx-2 w-[150px] h-10 overflow-x-auto',
                                     children: [
                                         El({
                                             element: 'li',
                                             className: 'size1 rounded-full w-8 h-8 font-bold mr-2 border-2 border-black text-center',
-                                            children: ['38']
+                                            children: [
+                                                El({
+                                                    element: 'p',
+                                                    className: 'size-text ml-[-2px] w-8 h-8',
+                                                    children: ['38']
+                                                })
+                                            ],
+                                            eventListener: [
+                                                {
+                                                    event: 'click',
+                                                    callback: (event)=>{selectSize(event.target)}
+                                                }
+                                            ]
                                         }),
                                         El({
                                             element: 'li',
-                                            className: 'size2 rounded-full w-8 h-8 font-bold mr-2 border-2 border-black text-center',
-                                            children: ['39']
+                                            className: 'size1 rounded-full w-8 h-8 font-bold mr-2 border-2 border-black text-center',
+                                            children: [
+                                                El({
+                                                    element: 'p',
+                                                    className: 'size-text ml-[-2px] w-8 h-8',
+                                                    children: ['39']
+                                                })
+                                            ],
+                                            eventListener: [
+                                                {
+                                                    event: 'click',
+                                                    callback: (event)=>{selectSize(event.target)}
+                                                }
+                                            ]
                                         }),
                                         El({
                                             element: 'li',
-                                            className: 'size3 rounded-full w-8 h-8 font-bold mr-2 border-2 border-black text-center',
-                                            children: ['40']
-                                        })
+                                            className: 'size1 rounded-full w-8 h-8 font-bold mr-2 border-2 border-black text-center',
+                                            children: [
+                                                El({
+                                                    element: 'p',
+                                                    className: 'size-text ml-[-2px] w-8 h-8',
+                                                    children: ['40']
+                                                })
+                                            ],
+                                            eventListener: [
+                                                {
+                                                    event: 'click',
+                                                    callback: (event)=>{selectSize(event.target)}
+                                                }
+                                            ]
+                                        }),
+                                        El({
+                                            element: 'li',
+                                            className: 'size1 rounded-full w-8 h-8 font-bold mr-2 border-2 border-black text-center',
+                                            children: [
+                                                El({
+                                                    element: 'p',
+                                                    className: 'size-text ml-[-2px] w-8 h-8',
+                                                    children: ['40']
+                                                })
+                                            ],
+                                            eventListener: [
+                                                {
+                                                    event: 'click',
+                                                    callback: (event)=>{selectSize(event.target)}
+                                                }
+                                            ]
+                                        }),
                                     ]
                                 }),
                             ]
@@ -419,4 +472,34 @@ function remove(element){
         let countDisplay = parent.children[1];
         countDisplay.innerHTML = counter;
     }
+}
+
+function selectSize(element){
+    let parentElement = element.parentElement
+    let sizeContainer = parentElement.parentElement
+
+    for(let i = 0; i < sizeContainer.children.length; i++){
+        sizeContainer.children[i].classList.remove('bg-black')
+        sizeContainer.children[i].classList.remove('text-white')
+    }
+
+    parentElement.classList.add('bg-black')
+    parentElement.classList.add('text-white')
+
+    size = element.innerHTML;
+}
+
+function selectColor(element){
+    let parentElement = element.parentElement
+    let colorContainer = parentElement.parentElement
+
+    for(let i = 0; i < colorContainer.children.length; i++){
+        sizeContainer.children[i].classList.remove('border-2')
+        sizeContainer.children[i].classList.remove('border-black')
+    }
+
+    parentElement.classList.add('border-2')
+    parentElement.classList.add('border-black')
+
+    size = element.innerHTML;
 }
