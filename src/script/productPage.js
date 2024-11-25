@@ -411,6 +411,8 @@ async function updateCart(){
     for(let i = 0; i < userCart.length; i++){
         if(userCart[i].id == publicId){
             userCart[i].counter = counter;
+            userCart[i].size = size;
+            userCart[i].color = color;
             productFound = true;
             break;
         }

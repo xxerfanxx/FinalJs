@@ -12,8 +12,8 @@
           "price": 245,
           "imgUrl": "http://localhost:5173/products/adidas/1.webp",
           "counter": 7,
-          "size": "41",
-          "color": "rose",
+          "size": "40",
+          "color": "yellow",
           "whished": false
         }
       ],
