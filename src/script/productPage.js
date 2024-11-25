@@ -35,6 +35,8 @@ async function getData(id = publicId) {
       price = database.price;
       availableColors = database.color;
       availableSizes = database.size;
+      size = availableSizes[0]
+      color = availableColors[0]
 
       createSizeSection();
       createColorSection();
@@ -81,16 +83,34 @@ function createSizeSection(){
 function createColorSection(){
 
     colorList = []
+    let colorSlot = []
+
+    let colorCode = {
+        'rose' : '#F33A6A',
+        'emerald' : '#50C878',
+        'teal' : '#008080',
+        'gray' : '#808080',
+        'yellow' : '#FFFF00'
+    }
+
+    for( let i = 0; i < availableColors.length; i++){
+        if(availableColors[i] in colorCode){
+            colorSlot.push(colorCode[availableColors[i]])
+        }
+        else{
+            colorSlot.push(availableColors[i])
+        }
+    }
 
     for(let i = 0; i < availableColors.length; i++){
         colorList.push(
             El({
                 element: 'li',
-                className: `color${i} rounded-full w-8 h-8 font-bold mr-2 text-center bg-${availableColors[i]}-600`,
+                className: `color${i} rounded-full w-8 h-8 font-bold mr-2 text-center bg-[${colorSlot[i]}]`,
                 children: [
                     El({
                         element: 'p',
-                        className: 'color-text ml-[-2px] w-8 h-8 text-[6px] mt-2 text-black',
+                        className: 'color-text ml-[-2px] w-8 h-8 text-[6px] mt-2 text-white drop-shadow-md',
                         children: [availableColors[i]]
                     })
                 ],
@@ -403,6 +423,8 @@ async function updateCart(){
             price,
             imgUrl,
             counter,
+            size,
+            color,
             whished: isWishListed
         })
     }
@@ -432,7 +454,9 @@ async function toggleWish(){
             title,
             price,
             imgUrl,
-            counter
+            counter,
+            size,
+            color
         })
         isWishListed = true;
     }

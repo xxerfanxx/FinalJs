@@ -5,7 +5,18 @@
       "name": "Erfan",
       "email": "erfan.ghasemian83@gmail.com",
       "password": "Erfan.1383",
-      "cart": "",
+      "cart": [
+        {
+          "id": "1",
+          "title": "adidas",
+          "price": 245,
+          "imgUrl": "http://localhost:5173/products/adidas/1.webp",
+          "counter": 4,
+          "size": "41",
+          "color": "rose",
+          "whished": false
+        }
+      ],
       "defaultLocation": {
         "title": "Tehran",
         "location": "Tehran, tehran pars"
