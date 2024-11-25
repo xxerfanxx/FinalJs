@@ -7,6 +7,9 @@ let imgUrl;
 let title;
 let publicId;
 let price;
+let size;
+let color;
+
 let isWishListed;
 let userCart = [];
 let wishList = [];
@@ -187,6 +190,74 @@ export function productPage(id){
                             ],
                             src: '/src/assets/heart.svg'
                         })
+                    ]
+                }),
+                El({
+                    element: 'div',
+                    className: 'middle-row w-[380px] h-fit mx-auto my-2 flex flex-row',
+                    children: [
+                        El({
+                            element: 'div',
+                            className: 'size-section flex flex-col',
+                            children: [
+                                El({
+                                    element: 'h1',
+                                    className: 'text-[22px] font-bold my-2 ml-2',
+                                    children: ['Size']
+                                }),
+                                El({
+                                    element: 'ul',
+                                    className: 'Sizes flex flex-row mx-2 w-[150px] overflow-y-auto',
+                                    children: [
+                                        El({
+                                            element: 'li',
+                                            className: 'size1 rounded-full w-8 h-8 font-bold mr-2 border-2 border-black text-center',
+                                            children: ['38']
+                                        }),
+                                        El({
+                                            element: 'li',
+                                            className: 'size2 rounded-full w-8 h-8 font-bold mr-2 border-2 border-black text-center',
+                                            children: ['39']
+                                        }),
+                                        El({
+                                            element: 'li',
+                                            className: 'size3 rounded-full w-8 h-8 font-bold mr-2 border-2 border-black text-center',
+                                            children: ['40']
+                                        })
+                                    ]
+                                }),
+                            ]
+                        }),
+                        El({
+                            element: 'div',
+                            className: 'color-section flex flex-col',
+                            children: [
+                                El({
+                                    element: 'h1',
+                                    className: 'text-[22px] font-bold my-2 ml-2',
+                                    children: ['Color']
+                                }),
+                                El({
+                                    element: 'ul',
+                                    className: 'colors flex flex-row mx-2 w-[150px] overflow-y-auto',
+                                    children: [
+                                        El({
+                                            element: 'li',
+                                            className: 'color1 rounded-full w-8 h-8 bg-red-400 mr-2'
+                                        }),
+                                        El({
+                                            element: 'li',
+                                            className: 'color2 rounded-full w-8 h-8 bg-blue-400 mr-2'
+                                        }),
+                                        El({
+                                            element: 'li',
+                                            className: 'color3 rounded-full w-8 h-8 bg-green-400 mr-2'
+                                        })
+                                    ]
+                                }),
+                        
+                            ]
+                        }),
                     ]
                 })
             ]

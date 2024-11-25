@@ -160,7 +160,7 @@ export function paymentPage(){
                         eventListener: [
                             {
                                 event : 'click',
-                                callback: createOrder
+                                callback: ()=>{createOrder(),router.navigate('/orders')}
                             }
                         ],
                         children: ['Confirm Payment']
