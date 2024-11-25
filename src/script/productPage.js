@@ -303,23 +303,78 @@ export function productPage(id){
                                 }),
                                 El({
                                     element: 'ul',
-                                    className: 'colors flex flex-row mx-2 w-[150px] overflow-y-auto',
+                                    className: 'colors flex flex-row mx-2 w-[150px] h-10 overflow-x-auto',
                                     children: [
                                         El({
                                             element: 'li',
-                                            className: 'color1 rounded-full w-8 h-8 bg-red-400 mr-2'
+                                            className: 'color1 rounded-full w-8 h-8 font-bold mr-2 text-center bg-blue-600',
+                                            children: [
+                                                El({
+                                                    element: 'p',
+                                                    className: 'color-text ml-[-2px] w-8 h-8 text-[6px] mt-2 text-white',
+                                                    children: ['blue']
+                                                })
+                                            ],
+                                            eventListener: [
+                                                {
+                                                    event: 'click',
+                                                    callback: (event)=>{selectColor(event.target)}
+                                                }
+                                            ]
                                         }),
                                         El({
                                             element: 'li',
-                                            className: 'color2 rounded-full w-8 h-8 bg-blue-400 mr-2'
+                                            className: 'color1 rounded-full w-8 h-8 font-bold mr-2 text-center bg-red-600',
+                                            children: [
+                                                El({
+                                                    element: 'p',
+                                                    className: 'color-text ml-[-2px] w-8 h-8 text-[6px] mt-2 text-white',
+                                                    children: ['red']
+                                                })
+                                            ],
+                                            eventListener: [
+                                                {
+                                                    event: 'click',
+                                                    callback: (event)=>{selectColor(event.target)}
+                                                }
+                                            ]
                                         }),
                                         El({
                                             element: 'li',
-                                            className: 'color3 rounded-full w-8 h-8 bg-green-400 mr-2'
-                                        })
+                                            className: 'color1 rounded-full w-8 h-8 font-bold mr-2 text-center bg-green-600',
+                                            children: [
+                                                El({
+                                                    element: 'p',
+                                                    className: 'color-text ml-[-2px] w-8 h-8 text-[6px] mt-2 text-white',
+                                                    children: ['green']
+                                                })
+                                            ],
+                                            eventListener: [
+                                                {
+                                                    event: 'click',
+                                                    callback: (event)=>{selectColor(event.target)}
+                                                }
+                                            ]
+                                        }),
+                                        El({
+                                            element: 'li',
+                                            className: 'color1 rounded-full w-8 h-8 font-bold mr-2 bg-yellow-600 text-center',
+                                            children: [
+                                                El({
+                                                    element: 'p',
+                                                    className: 'color-text ml-[-2px] w-8 h-8 text-[6px] mt-2 text-white',
+                                                    children: ['yellow']
+                                                })
+                                            ],
+                                            eventListener: [
+                                                {
+                                                    event: 'click',
+                                                    callback: (event)=>{selectColor(event.target)}
+                                                }
+                                            ]
+                                        }),
                                     ]
                                 }),
-                        
                             ]
                         }),
                     ]
@@ -494,12 +549,12 @@ function selectColor(element){
     let colorContainer = parentElement.parentElement
 
     for(let i = 0; i < colorContainer.children.length; i++){
-        sizeContainer.children[i].classList.remove('border-2')
-        sizeContainer.children[i].classList.remove('border-black')
+        colorContainer.children[i].classList.remove('border-2')
+        colorContainer.children[i].classList.remove('border-black')
     }
 
     parentElement.classList.add('border-2')
     parentElement.classList.add('border-black')
 
-    size = element.innerHTML;
+    color = element.innerHTML;
 }
