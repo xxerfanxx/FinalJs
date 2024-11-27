@@ -88,13 +88,19 @@ function createOrders(){
                                     }),
                                     El({
                                         element: 'div',
-                                        className: 'button-container min-w-[36px] min-h-[36px] rounded-full overflow-hidden bg-gray-100 flex flex-row justify-between ml-[12px]',
+                                        className: 'button-container min-w-[36px] h-fit rounded-full overflow-hidden flex flex-row justify-between ml-[12px]',
                                         children: [
                                             El({
                                                 element: 'h1',
-                                                className: 'counter w-[30px] overflow-x-auto font-semibold text-center m-auto',
-                                                children: [orderCount]
+                                                className: 'counter w-[80px] overflow-x-auto font-semibold bg-black shadow-sm text-center text-white m-auto',
+                                                children: ['Review']
                                             })
+                                        ],
+                                        eventListener: [
+                                            {
+                                                event: 'click',
+                                                callback: ()=>{redirectToProduct(productId)}
+                                            }
                                         ]
                                     })
                                 ]
@@ -173,19 +179,19 @@ export function orderPage(){
                         children: [
                             El({
                                 element: 'button',
-                                className: 'active-button w-full border-b-2 border-b-black font-bold',
-                                children: ['Active']
-                            }),
-                            El({
-                                element: 'button',
                                 className: 'active-button w-full border-b-2 border-b-gray-400',
-                                children: ['Completed'],
+                                children: ['Active'],
                                 eventListener: [
                                     {
                                         event: 'click',
-                                        callback: ()=>{router.navigate('/orders/completed')}
+                                        callback: ()=>{router.navigate('/orders')}
                                     }
                                 ]
+                            }),
+                            El({
+                                element: 'button',
+                                className: 'active-button w-full border-b-2 border-black font-bold',
+                                children: ['Completed']
                             })
                         ]
                     }),
@@ -302,4 +308,8 @@ export function orderPage(){
             })
         ]
     })
+}
+
+function redirectToProduct(id){
+    router.navigate('/product/'+id)
 }

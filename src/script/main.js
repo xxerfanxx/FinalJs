@@ -80,4 +80,9 @@ router
     render(orderPage())
     getOrdersData()
   })
+  .on(`/orders/completed`, async function () {
+    const {orderPage, getOrdersData} = await import('./orderCompletedPage.js');
+    render(orderPage())
+    getOrdersData()
+  })
   .resolve();
