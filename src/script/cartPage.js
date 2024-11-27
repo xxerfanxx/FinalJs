@@ -107,7 +107,7 @@ function createOrders(){
                                     eventListener: [
                                         {
                                             event: 'click',
-                                            callback: (event)=>{remove(event.target)}
+                                            callback: (event)=>{warningMessage(event.target)}
                                         }
                                     ],
                                     src: '/src/assets/trash-icon.svg'
@@ -415,6 +415,79 @@ function reduce(element){
         countDisplay.innerHTML = counter;
         updateOrder('1', prodId, counter);
     }
+}
+
+function warningMessage(element){
+    let parent = element.parentElement
+    app.append(
+        El({
+            element: 'div',
+            className: 'bakcground fixed z-10 bg-[rgba(0,0,0,0.5)] w-full h-full top-0 left-0',
+            children:[
+                El({
+                    element: 'div',
+                    className: 'warning-message w-[250px] h-[120px] rounded-3xl shadow-md m-auto text-center flex flex-col fixed top-1/2 right-1/4 z-100 bg-white',
+                    children: [
+                        El({
+                            element: 'div',
+                            className: 'top-row flex flex-row mt-2',
+                            children: [
+                                El({
+                                    element: 'img',
+                                    className: 'warning-img ml-[12px] w-6 h-6 animate-pulse',
+                                    src: '/src/assets/warning-icon.png'
+                                }),
+                                El({
+                                    element: 'h1',
+                                    className: 'message-title text-[18px] mx-auto',
+                                    children: ['Are you sure ?']
+                                })
+                            ]
+                        }),
+                        El({
+                            element: 'div',
+                            className: 'middle-row flex flex-row mt-2',
+                            children: [
+                                El({
+                                    element: 'h1',
+                                    className: 'message-description text-[18px] mx-auto',
+                                    children: [`Deleting ${parent.children[0].innerHTML} from cart`]
+                                })
+                            ]
+                        }),
+                        El({
+                            element: 'div',
+                            className: 'button-container flex flex-row text-center justify-center mt-2 pt-2 border-t-2 border-t-gray-200 justify-evenly',
+                            children: [
+                                El({
+                                    element: 'button',
+                                    className: 'no-button w-[60px] h-fit text-center',
+                                    children: ['No'],
+                                    eventListener: [
+                                        {
+                                            event: 'click',
+                                            callback: ()=>{render(cartPage())}
+                                        }
+                                    ]
+                                }),
+                                El({
+                                    element: 'button',
+                                    className: 'yes-button w-[60px] h-fit text-center text-red-400',
+                                    children: ['Yes'],
+                                    eventListener: [
+                                        {
+                                            event: 'click',
+                                            callback: ()=>{remove(element)}
+                                        }
+                                    ]
+                                })
+                            ]
+                        })
+                    ]
+                })
+            ]
+        })
+    )
 }
 
 function remove(element){
