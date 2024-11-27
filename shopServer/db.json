@@ -11,7 +11,7 @@
           "title": "adidas",
           "price": 145,
           "imgUrl": "http://localhost:5173/products/adidas/2.webp",
-          "counter": 1,
+          "counter": 2,
           "size": "40",
           "color": "rose",
           "whished": false
